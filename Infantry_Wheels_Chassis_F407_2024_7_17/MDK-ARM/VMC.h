@@ -71,8 +71,8 @@ public:
 	void VMC_leg_t::Up_Right(float pitch_Angle, float pitch_Gyro, float dt);
 	void VMC_leg_t::Jacobian();
 
-    uint8_t VMC_leg_t::ground_detection_L();
-    uint8_t VMC_leg_t::ground_detection_R();
+   uint8_t VMC_leg_t::ground_detection_L();
+   uint8_t VMC_leg_t::ground_detection_R();
 
 };
 
@@ -223,4 +223,9 @@ uint8_t VMC_leg_t::ground_detection_L()
 	{
 	  return 0;	
 	}
+}
+
+float LQR_K_calc(float *coe,float len)
+{
+  return coe[0]*len*len*len+coe[1]*len*len+coe[2]*len+coe[3];
 }
