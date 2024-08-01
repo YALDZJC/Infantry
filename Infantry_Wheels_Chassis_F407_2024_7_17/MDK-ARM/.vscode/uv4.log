@@ -1,0 +1,147 @@
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'E:\Keil5\ARM\ARMCC\Bin'
+Build target 'Infantry_Wheels_Chassis_F407_2024_7_17'
+compiling main.cpp...
+../RM_File/RM_stm32fxxx_hal.h(49): warning:  #1-D: last line of file ends without a newline
+  /**************************************************************************/
+../RM_File/ladrc.h(15): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+      y2 = k * x1 + (1.0 - k) * x2;
+../RM_File/ladrc.h(66): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+      fhan_a1 = sqrtf(fhan_d * (fhan_d + 8.0 * fabs(fhan_y)));
+../RM_File/ladrc.h(67): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+      fhan_a2 = fhan_a0 + Fign_Fun(fhan_y) * (fhan_a1 - fhan_d) * 0.5;
+../RM_File/ladrc.h(68): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+      fhan_a = (fhan_a0 + fhan_y) * Fsg_Fun(fhan_y,fhan_d) + fhan_a2 * (1.0 - Fsg_Fun(fhan_y,fhan_d));
+../RM_File/ladrc.h(69): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+      return -r * (fhan_a / fhan_d) * Fsg_Fun(fhan_a,fhan_d) - r * Fign_Fun(fhan_a) * (1.0 - Fsg_Fun(fhan_a,fhan_d));
+../RM_File/ladrc.h(83): warning:  #1299-D: members and base-classes will be initialized in declaration order, not in member initialisation list order
+  	 :r(r),h(h),max_x2(max_x2),Fun(Fun)
+../RM_File/ladrc.h(114): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+          this->r2_1 = 1.0 / (2.0 * this->r);//r2_1�?2r的倒数
+../RM_File/ladrc.h(186): warning:  #1299-D: members and base-classes will be initialized in declaration order, not in member initialisation list order
+  		:td(td),b(b),max_u(max_u),h(h),wc(wc),w0(w0),max_z2(max_z2)
+../RM_File/ladrc.h(186): warning:  #1299-D: members and base-classes will be initialized in declaration order, not in member initialisation list order
+  		:td(td),b(b),max_u(max_u),h(h),wc(wc),w0(w0),max_z2(max_z2)
+../RM_File/ladrc.h(231): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+            this->bt1 = 2.0 * this->w0;//β1
+../RM_File/ladrc.h(245): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+            this->bt1 = 3.0 * this->w0;//β1
+../RM_File/ladrc.h(246): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+            this->bt2 = 3.0 * this->w0 * this->w0;//β2
+../RM_File/ladrc.h(316): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+            this->kd = 2.0 * this->wc;
+../RM_File/RM_PID.h(199): warning:  #1299-D: members and base-classes will be initialized in declaration order, not in member initialisation list order
+  	:dt(dt),k(k),max_target_e(max_target_e),max_cout(max_cout),cout_k(cout_k){}
+../RM_File/RM_PID.h(199): warning:  #1299-D: members and base-classes will be initialized in declaration order, not in member initialisation list order
+  	:dt(dt),k(k),max_target_e(max_target_e),max_cout(max_cout),cout_k(cout_k){}
+../RM_File/RM_PID.h(262): warning:  #427-D: qualified name is not allowed in member declaration
+  	double UDE::UpData(double Xnt, double u, double k, double B, double max, double err);
+../RM_File/RM_PID.h(276): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		this->ude.I_u = this->ude.I_u*0.7 ;
+../RM_File/RM_Motor.h(432): warning:  #1-D: last line of file ends without a newline
+  }
+../RM_File/RM_Wheel.h(22): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+        this->speed[0] = ((1.0 - ky) * vx + (1.0 - kx) * vy - vw);
+../RM_File/RM_Wheel.h(22): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+        this->speed[0] = ((1.0 - ky) * vx + (1.0 - kx) * vy - vw);
+../RM_File/RM_Wheel.h(23): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+        this->speed[1] = ((1.0 - ky) * vx - (1.0 - kx) * vy + vw);
+../RM_File/RM_Wheel.h(23): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+        this->speed[1] = ((1.0 - ky) * vx - (1.0 - kx) * vy + vw);
+../RM_File/RM_Wheel.h(24): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+        this->speed[2] = ((1.0 - ky) * vx + (1.0 - kx) * vy + vw);
+../RM_File/RM_Wheel.h(24): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+        this->speed[2] = ((1.0 - ky) * vx + (1.0 - kx) * vy + vw);
+../RM_File/RM_Wheel.h(25): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+        this->speed[3] = ((1.0 - ky) * vx - (1.0 - kx) * vy - vw);
+../RM_File/RM_Wheel.h(25): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+        this->speed[3] = ((1.0 - ky) * vx - (1.0 - kx) * vy - vw);
+../RM_File/RM_Wheel.h(62): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+        this->angle[0] = atan2(tempvx[0] , tempvy[0]) * 180 / 3.14 * 8191 / 360;         
+../RM_File/RM_Wheel.h(63): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+        this->angle[1] = atan2(tempvx[1] , tempvy[1]) * 180 / 3.14 * 8191 / 360;
+../RM_File/RM_Wheel.h(64): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+        this->angle[2] = atan2(tempvx[2] , tempvy[2]) * 180 / 3.14 * 8191 / 360;          
+../RM_File/RM_Wheel.h(65): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+        this->angle[3] = atan2(tempvx[3] , tempvy[3]) * 180 / 3.14 * 8191 / 360;
+../RM_File/RM_Wheel.h(38): warning:  #177-D: variable "angle"  was declared but never referenced
+        float angle = 45 * 3.14 / 180; 
+../RM_File/RM_PM01.h(1): error:  #10: "#" not expected here
+  FTERSBWVWAcZQXQ#pragma once
+../RM_File/RM_PM01.h(1): error:  #77-D: this declaration has no storage class or type specifier
+  FTERSBWVWAcZQXQ#pragma once
+../RM_File/RM_PM01.h(1): error:  #65: expected a ";"
+  FTERSBWVWAcZQXQ#pragma once
+../RM_File/RM_RefereeSystemCRC.h(32): warning:  #12-D: parsing restarts here after previous syntax error
+  uint32_t Verify_CRC16_Check_Sum(uint8_t *pchMessage, uint32_t dwLength);
+../RM_File/RM_RefereeSystemCRC.h(39): error:  #169: expected a declaration
+  }
+../RM_File/RM_RefereeSystem.h(31): warning:  #12-D: parsing restarts here after previous syntax error
+  };
+../RM_File/RM_RefereeSystem.h(172): error:  #169: expected a declaration
+  }
+../RM_File/RM_RefereeSystem.h(178): error:  #276: name followed by "::" must be a class or namespace name
+  extern RM_RefereeSystem::ext_game_robot_status_t ext_power_heat_data_0x0201;
+../RM_File/RM_RefereeSystem.h(180): error:  #276: name followed by "::" must be a class or namespace name
+  extern RM_RefereeSystem::ext_power_heat_data_t ext_power_heat_data_0x0202;
+../RM_File/RM_RefereeSystem.h(182): error:  #276: name followed by "::" must be a class or namespace name
+  extern RM_RefereeSystem::graphic_data_struct_t graphic_data_struct_0x0301;
+../RM_File/RM_RefereeSystem.h(184): error:  #276: name followed by "::" must be a class or namespace name
+  extern RM_RefereeSystem::map_command_t map_command_0x0303;
+../RM_File/RM_RefereeSystem.h(190): warning:  #1-D: last line of file ends without a newline
+  extern uint8_t daohang_tx_buf[128];
+../RM_File/DM.h(207): warning:  #1-D: last line of file ends without a newline
+  }
+../RM_File/Total_stack.h(74): error:  #276: name followed by "::" must be a class or namespace name
+  	RM_RefereeSystem::RM_RefereeSystemInit();//串口初始�?
+../RM_File/Total_stack.h(197): error:  #276: name followed by "::" must be a class or namespace name
+  	RM_RefereeSystem::RM_RefereeSystemParse(huart);
+../RM_File/Total_stack.h(282): error:  #276: name followed by "::" must be a class or namespace name
+  					set_yd_v(RM_RefereeSystem::OperateRevise,shift_vxy_zoom);//修改速度
+../RM_File/Total_stack.h(284): error:  #276: name followed by "::" must be a class or namespace name
+  					set_gy_v(RM_RefereeSystem::OperateRevise,(YD_V_Init+(now_zx_v * YD_V_SET)-0.2));//修改转�?
+../RM_File/Total_stack.h(291): error:  #276: name followed by "::" must be a class or namespace name
+  					set_mcl_of(RM_RefereeSystem::OperateRevise,Gimbal_to_Chassis_Data.MCL_of);//摩擦轮开�?
+../RM_File/Total_stack.h(297): error:  #276: name followed by "::" must be a class or namespace name
+  					set_cm_of(RM_RefereeSystem::OperateRevise,Gimbal_to_Chassis_Data.CM_of);//仓门开�?
+../RM_File/Total_stack.h(302): error:  #276: name followed by "::" must be a class or namespace name
+  					set_bp_of(RM_RefereeSystem::OperateRevise,Gimbal_to_Chassis_Data.bp_of);//拨盘开�?
+../RM_File/Total_stack.h(373): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			yaw_e_radian = (yaw_e_xita + 90.0) * 0.017453;//转弧�?,+90是因为修正原本的角度
+../RM_File/Total_stack.h(444): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  				AGV_wheel.UpData(RC_LX * 24.8242 * CHASSIS_SPEED_ZOOM_VXY,RC_LY * 24.8242 * CHASSIS_SPEED_ZOOM_VXY,td_vw.x1 * CHASSIS_SPEED_ZOOM_VW * vxy_kvw,MAX_CHASSIS_SPEED);//底盘解算
+../RM_File/Total_stack.h(465): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			sintt += 0.001;
+../RM_File/Total_stack.h(554): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			sintt += 0.001;
+../RM_File/Total_stack.h(572): error:  #276: name followed by "::" must be a class or namespace name
+  	RM_RefereeSystem::graphic_data_struct_t graphic_data_struct[50];//图层数据
+../RM_File/Total_stack.h(577): error:  #276: name followed by "::" must be a class or namespace name
+  	RM_RefereeSystem::ext_client_custom_character_t ext_client_custom_character[20];//文字数据
+../RM_File/Total_stack.h(582): error:  #276: name followed by "::" must be a class or namespace name
+  	void add(RM_RefereeSystem::graphic_data_struct_t graphic_data_struct_temp)
+../RM_File/Total_stack.h(588): error:  #276: name followed by "::" must be a class or namespace name
+  	void add_wz(RM_RefereeSystem::ext_client_custom_character_t ext_client_custom_character_temp)
+../RM_File/Total_stack.h(585): error:  #276: name followed by "::" must be a class or namespace name
+  		memcpy((void*)&graphic_data_struct[size],(void*)&graphic_data_struct_temp,sizeof(RM_RefereeSystem::graphic_data_struct_t));
+../RM_File/Total_stack.h(591): error:  #276: name followed by "::" must be a class or namespace name
+  		memcpy((void*)&ext_client_custom_character[wz_size],(void*)&ext_client_custom_character_temp,sizeof(RM_RefereeSystem::ext_client_custom_character_t));
+../RM_File/Total_stack.h(607): error:  #276: name followed by "::" must be a class or namespace name
+  			RM_RefereeSystem::RM_RefereeSystemSendDataN(graphic_data_struct,send_graphic_data_struct_size);
+../RM_File/Total_stack.h(611): error:  #276: name followed by "::" must be a class or namespace name
+  		memcpy(graphic_data_struct,(void*)&graphic_data_struct[send_graphic_data_struct_size],sizeof(RM_RefereeSystem::graphic_data_struct_t) * (size));	
+../RM_File/Total_stack.h(612): error:  #276: name followed by "::" must be a class or namespace name
+  		memset((void*)&graphic_data_struct[size],0,sizeof(RM_RefereeSystem::graphic_data_struct_t) * (send_graphic_data_struct_size));	
+../RM_File/Total_stack.h(622): error:  #276: name followed by "::" must be a class or namespace name
+  			RM_RefereeSystem::RM_RefereeSystemSendStr(ext_client_custom_character[wz_size - 1]);
+../RM_File/Total_stack.h(634): error:  #276: name followed by "::" must be a class or namespace name
+  			RM_RefereeSystem::RM_RefereeSystemSetOperateTpye(RM_RefereeSystem::DeleteAll);
+../RM_File/Total_stack.h(634): error:  #276: name followed by "::" must be a class or namespace name
+  			RM_RefereeSystem::RM_RefereeSystemSetOperateTpye(RM_RefereeSystem::DeleteAll);
+../RM_File/Total_stack.h(635): error:  #276: name followed by "::" must be a class or namespace name
+  			RM_RefereeSystem::RM_RefereeSystemDelete(RM_RefereeSystem::DeleteAll,0);
+../RM_File/Total_stack.h(635): error:  #276: name followed by "::" must be a class or namespace name
+  			RM_RefereeSystem::RM_RefereeSystemDelete(RM_RefereeSystem::DeleteAll,0);
+..\Core\Src\main.cpp: 40 warnings, 30 errors
+"Infantry_Wheels_Chassis_F407_2024_7_17\Infantry_Wheels_Chassis_F407_2024_7_17.axf" - 30 Error(s), 40 Warning(s).
+Target not created.
+Build Time Elapsed:  00:00:02
