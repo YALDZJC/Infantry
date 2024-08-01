@@ -1,0 +1,158 @@
+<html>
+<body>
+<pre>
+<h1>�Vision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ��Vision V5.32.0.0
+Copyright (C) 2020 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: a Administrator, a, LIC=NQQMA-1NSTQ-BSUYX-HYH2V-A7NG4-73RSR
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.32.0.0
+Toolchain Path:  E:\Keil5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 7 (build 960)
+Assembler:       Armasm.exe V5.06 update 7 (build 960)
+Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
+Library Manager: ArmAr.exe V5.06 update 7 (build 960)
+Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
+CPU DLL:         SARMCM3.DLL V5.32.0.0
+Dialog DLL:      DCM.DLL V1.17.3.0
+Target DLL:      CMSIS_AGDI.dll V1.32.12.0
+Dialog DLL:      TCM.DLL V1.46.0.0
+ 
+<h2>Project:</h2>
+F:\RM_CODE\RM_CODE\Infantry_Wheels_Gimbal_2024_7_18\MDK-ARM\Infantry_Wheels_Gimbal_2024_7_18.uvprojx
+Project File Date:  07/28/2024
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'E:\Keil5\ARM\ARMCC\Bin'
+Build target 'Infantry_Wheels_Gimbal_2024_7_18'
+compiling main.cpp...
+..\RM_File\RM_stm32fxxx_hal.h(49): warning:  #1-D: last line of file ends without a newline
+  /**************************************************************************/
+..\RM_File\ladrc.h(13): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+      y2 = k * x1 + (1.0 - k) * x2;
+..\RM_File\ladrc.h(71): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+      fhan_a1 = sqrtf(fhan_d * (fhan_d + 8.0 * fabs(fhan_y)));
+..\RM_File\ladrc.h(72): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+      fhan_a2 = fhan_a0 + Fign_Fun(fhan_y) * (fhan_a1 - fhan_d) * 0.5;
+..\RM_File\ladrc.h(73): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+      fhan_a = (fhan_a0 + fhan_y) * Fsg_Fun(fhan_y,fhan_d) + fhan_a2 * (1.0 - Fsg_Fun(fhan_y,fhan_d));
+..\RM_File\ladrc.h(74): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+      return -r * (fhan_a / fhan_d) * Fsg_Fun(fhan_a,fhan_d) - r * Fign_Fun(fhan_a) * (1.0 - Fsg_Fun(fhan_a,fhan_d));
+..\RM_File\ladrc.h(88): warning:  #1299-D: members and base-classes will be initialized in declaration order, not in member initialisation list order
+  	 :r(r),h(h),max_x2(max_x2),Fun(Fun)
+..\RM_File\ladrc.h(123): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+          this->r2_1 = 1.0 / (2.0 * this->r);//r2_1�?2r的倒数
+..\RM_File\ladrc.h(195): warning:  #1299-D: members and base-classes will be initialized in declaration order, not in member initialisation list order
+  		:td(td),b(b),max_u(max_u),h(h),wc(wc),w0(w0),max_z2(max_z2)
+..\RM_File\ladrc.h(195): warning:  #1299-D: members and base-classes will be initialized in declaration order, not in member initialisation list order
+  		:td(td),b(b),max_u(max_u),h(h),wc(wc),w0(w0),max_z2(max_z2)
+..\RM_File\ladrc.h(240): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+            this->bt1 = 2.0 * this->w0;//β1
+..\RM_File\ladrc.h(254): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+            this->bt1 = 3.0 * this->w0;//β1
+..\RM_File\ladrc.h(255): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+            this->bt2 = 3.0 * this->w0 * this->w0;//β2
+..\RM_File\ladrc.h(333): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+            this->kd = 2.0 * this->wc;
+..\RM_File\RM_PID.h(315): warning:  #1299-D: members and base-classes will be initialized in declaration order, not in member initialisation list order
+  	:dt(dt),k(k),max_target_e(max_target_e),max_cout(max_cout),cout_k(cout_k){}
+..\RM_File\RM_PID.h(315): warning:  #1299-D: members and base-classes will be initialized in declaration order, not in member initialisation list order
+  	:dt(dt),k(k),max_target_e(max_target_e),max_cout(max_cout),cout_k(cout_k){}
+..\RM_File\RM_PID.h(390): warning:  #427-D: qualified name is not allowed in member declaration
+  	double UDE::UpData(double Xnt, double u, double err);
+..\RM_File\RM_Motor.h(394): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	if(expectations - feedback > maxspeed * 0.5)expectations -= maxspeed;
+..\RM_File\RM_Motor.h(395): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	else if(expectations - feedback < -maxspeed * 0.5)expectations += maxspeed;
+..\RM_File\RM_CHxxxGy.h(45): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		this->gy.ASx = (float)((int16_t)((RxHeaderData[1] << 8) | RxHeaderData[0])) * 0.01;
+..\RM_File\RM_CHxxxGy.h(46): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		this->gy.ASy = (float)((int16_t)((RxHeaderData[3] << 8) | RxHeaderData[2])) * 0.01;
+..\RM_File\RM_CHxxxGy.h(47): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		this->gy.ASz = (float)((int16_t)((RxHeaderData[5] << 8) | RxHeaderData[4])) * 0.01;
+..\RM_File\RM_CHxxxGy.h(51): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		this->gy.x = (float)((int16_t)((RxHeaderData[1] << 8) | RxHeaderData[0])) * 0.01;
+..\RM_File\RM_CHxxxGy.h(52): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		this->gy.y = (float)((int16_t)((RxHeaderData[3] << 8) | RxHeaderData[2])) * 0.01;
+..\RM_File\RM_CHxxxGy.h(53): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		this->gy.z = (float)((int16_t)((RxHeaderData[5] << 8) | RxHeaderData[4])) * 0.01;
+..\RM_File\DM.h(207): warning:  #1-D: last line of file ends without a newline
+  }
+..\RM_File\def_variable.h(76): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  float _yaw_init_encoder_angle_ = (r2g_180(2.81839752)); //编码器绝对值初始化（第一次初始化的参数）
+..\RM_File\def_variable.h(330): warning:  #1-D: last line of file ends without a newline
+  void Get_Chassis_to_Gimbal_ore(UART_HandleTypeDef* huart);//解决ore问题
+..\RM_File\Total_stack.h(256): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  				format[1] = ((td_move.x1 > 0 ? 0 : 1) << 7 | (int)(fabsf(td_move.x1) / 6.0));
+..\RM_File\Total_stack.h(260): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  				format[2] = ((td_move1.x1 > 0 ? 0 : 1) << 7 | (int)(fabsf(td_move1.x1) / 6.0));
+..\RM_File\Total_stack.h(267): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  				format[1] = ((td_move.x1 > 0 ? 0 : 1) << 7 | (int)(fabsf(td_move.x1) / 6.0));
+..\RM_File\Total_stack.h(271): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  				format[1] = ((td_move.x1 > 0 ? 0 : 1) << 7 | (int)(fabsf(td_move.x1) / 6.0));
+..\RM_File\Total_stack.h(284): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	*((int16_t*)&format[3]) = (int16_t)(yaw_encoder_angle_e * 20.0);
+..\RM_File\Total_stack.h(328): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  				yaw_init_encoder_angle = r2g_180(Motor6020.GetMotorDataPos(0x205)) + Fign_Fun(Motor6020.GetMotorDataPos(0x205)) * 5.0 + 73.5314793910;
+..\RM_File\Total_stack.h(366): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	c = Fign_Fun(15.0 - t) * 0.5;
+..\RM_File\Total_stack.h(367): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	a = c + 0.5;
+..\RM_File\Total_stack.h(368): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	b = -(c - 0.5);
+..\RM_File\Total_stack.h(370): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	t += 0.001;
+..\RM_File\Total_stack.h(402): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  				pitch_target_angle_Encoder += 0.09;
+..\RM_File\Total_stack.h(406): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  				pitch_target_angle_Encoder -= 0.09;
+..\RM_File\Total_stack.h(410): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  				yaw_target_angle_gy -= 0.2;
+..\RM_File\Total_stack.h(414): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  				yaw_target_angle_gy += 0.2;
+..\RM_File\Total_stack.h(594): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			if((fabs((fabs(ladrc_friction_l.z1) + fabs(ladrc_friction_r.z1)) * 0.5) - fabs(Friction_Speed)) < Friction_Speed * 0.4)is_on_MCL = true;
+..\RM_File\Total_stack.h(594): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			if((fabs((fabs(ladrc_friction_l.z1) + fabs(ladrc_friction_r.z1)) * 0.5) - fabs(Friction_Speed)) < Friction_Speed * 0.4)is_on_MCL = true;
+..\RM_File\Total_stack.h(599): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			if((fabs(fabs(ladrc_dial.z1) - fabs(Dial_Speed)) < Dial_Speed * 0.5))is_on_BP = true;
+..\RM_File\Total_stack.h(669): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			sintt += 0.001;
+..\RM_File\Total_stack.h(683): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		pid_pitch_angle.GetPidPos(kpid_pitch_angle, tar_pitch.x1 * 22.75, Motor6020.GetMotorDataPos(PITCH_MOTOR_ID), 30000);
+..\RM_File\Total_stack.h(686): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		FF_pitch.UpData(tar_pitch.x1 * 22.75, FF_pitch_k);
+..\Core\Src\main.cpp: 48 warnings, 0 errors
+linking...
+Program Size: Code=32576 RO-data=2908 RW-data=408 ZI-data=11384  
+FromELF: creating hex file...
+"Infantry_Wheels_Gimbal_2024_7_18\Infantry_Wheels_Gimbal_2024_7_18.axf" - 0 Error(s), 48 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.7.0.pack
+                ARM.CMSIS.5.7.0
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.4.0
+
+Package Vendor: Keil
+                https://www.keil.com/pack/Keil.STM32F4xx_DFP.2.17.1.pack
+                Keil.STM32F4xx_DFP.2.17.1
+                STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_Infantry_Wheels_Gimbal_2024_7_18
+  C:\Users\Administrator.DESKTOP-IAACAVF\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include
+  C:\Users\Administrator.DESKTOP-IAACAVF\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.4.0
+      Include file:  CMSIS\Core\Include\tz_context.h
+Build Time Elapsed:  00:00:02
+</pre>
+</body>
+</html>

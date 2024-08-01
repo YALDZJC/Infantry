@@ -3,17 +3,17 @@
         {
             "name": "Infantry_Wheels_Gimbal_F407_2024630",
             "includePath": [
-                "f:\\RM_CODE\\RM_CODE\\Infantry_Wheels_Gimbal_F407_2024630\\Core\\Inc",
-                "f:\\RM_CODE\\RM_CODE\\Infantry_Wheels_Gimbal_F407_2024630\\Drivers\\STM32F4xx_HAL_Driver\\Inc",
-                "f:\\RM_CODE\\RM_CODE\\Infantry_Wheels_Gimbal_F407_2024630\\Drivers\\STM32F4xx_HAL_Driver\\Inc\\Legacy",
-                "f:\\RM_CODE\\RM_CODE\\Infantry_Wheels_Gimbal_F407_2024630\\Drivers\\CMSIS\\Device\\ST\\STM32F4xx\\Include",
-                "f:\\RM_CODE\\RM_CODE\\Infantry_Wheels_Gimbal_F407_2024630\\Drivers\\CMSIS\\Include",
-                "f:\\RM_CODE\\RM_CODE\\Infantry_Wheels_Gimbal_F407_2024630\\RM_File",
+                "f:\\RM_CODE\\Infantry\\Infantry\\Infantry_Wheels_Gimbal_F407_2024630\\Core\\Inc",
+                "f:\\RM_CODE\\Infantry\\Infantry\\Infantry_Wheels_Gimbal_F407_2024630\\Drivers\\STM32F4xx_HAL_Driver\\Inc",
+                "f:\\RM_CODE\\Infantry\\Infantry\\Infantry_Wheels_Gimbal_F407_2024630\\Drivers\\STM32F4xx_HAL_Driver\\Inc\\Legacy",
+                "f:\\RM_CODE\\Infantry\\Infantry\\Infantry_Wheels_Gimbal_F407_2024630\\Drivers\\CMSIS\\Device\\ST\\STM32F4xx\\Include",
+                "f:\\RM_CODE\\Infantry\\Infantry\\Infantry_Wheels_Gimbal_F407_2024630\\Drivers\\CMSIS\\Include",
+                "f:\\RM_CODE\\Infantry\\Infantry\\Infantry_Wheels_Gimbal_F407_2024630\\RM_File",
                 "E:\\Keil5\\ARM\\ARMCC\\include",
                 "E:\\Keil5\\ARM\\ARMCC\\include\\rw",
-                "f:\\RM_CODE\\RM_CODE\\Infantry_Wheels_Gimbal_F407_2024630\\MDK-ARM",
-                "f:\\RM_CODE\\RM_CODE\\Infantry_Wheels_Gimbal_F407_2024630\\Core\\Src",
-                "f:\\RM_CODE\\RM_CODE\\Infantry_Wheels_Gimbal_F407_2024630\\Drivers\\STM32F4xx_HAL_Driver\\Src"
+                "f:\\RM_CODE\\Infantry\\Infantry\\Infantry_Wheels_Gimbal_F407_2024630\\MDK-ARM",
+                "f:\\RM_CODE\\Infantry\\Infantry\\Infantry_Wheels_Gimbal_F407_2024630\\Core\\Src",
+                "f:\\RM_CODE\\Infantry\\Infantry\\Infantry_Wheels_Gimbal_F407_2024630\\Drivers\\STM32F4xx_HAL_Driver\\Src"
             ],
             "defines": [
                 "USE_HAL_DRIVER",

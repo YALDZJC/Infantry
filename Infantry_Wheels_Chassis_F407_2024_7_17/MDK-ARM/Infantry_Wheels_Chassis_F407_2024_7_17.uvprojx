@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../RM_File</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../RM_File;..\MDK-ARM</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -652,6 +652,11 @@
               <FileName>RM_RefereeSystem.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\RM_File\RM_RefereeSystem.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>VMC.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\VMC.h</FilePath>
             </File>
           </Files>
         </Group>
