@@ -27,132 +27,7 @@ Project File Date:  08/01/2024
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'E:\Keil5\ARM\ARMCC\Bin'
 Build target 'Infantry_Wheels_Chassis_F407_2024_7_17'
-compiling dma.c...
-compiling stm32f4xx_it.c...
-compiling gpio.c...
-compiling stm32f4xx_hal_flash_ramfunc.c...
-compiling stm32f4xx_hal_flash.c...
-compiling stm32f4xx_hal_flash_ex.c...
-compiling stm32f4xx_hal_rcc_ex.c...
-compiling tim.c...
-compiling stm32f4xx_hal_msp.c...
-compiling stm32f4xx_hal_gpio.c...
-compiling can.c...
-compiling usart.c...
-compiling stm32f4xx_hal_dma_ex.c...
-compiling RM_RefereeSystemCRC.cpp...
-compiling stm32f4xx_hal_can.c...
-compiling stm32f4xx_hal_rcc.c...
-compiling main.cpp...
-../RM_File/RM_stm32fxxx_hal.h(49): warning:  #1-D: last line of file ends without a newline
-  /**************************************************************************/
-../RM_File/ladrc.h(15): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-      y2 = k * x1 + (1.0 - k) * x2;
-../RM_File/ladrc.h(66): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-      fhan_a1 = sqrtf(fhan_d * (fhan_d + 8.0 * fabs(fhan_y)));
-../RM_File/ladrc.h(67): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-      fhan_a2 = fhan_a0 + Fign_Fun(fhan_y) * (fhan_a1 - fhan_d) * 0.5;
-../RM_File/ladrc.h(68): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-      fhan_a = (fhan_a0 + fhan_y) * Fsg_Fun(fhan_y,fhan_d) + fhan_a2 * (1.0 - Fsg_Fun(fhan_y,fhan_d));
-../RM_File/ladrc.h(69): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-      return -r * (fhan_a / fhan_d) * Fsg_Fun(fhan_a,fhan_d) - r * Fign_Fun(fhan_a) * (1.0 - Fsg_Fun(fhan_a,fhan_d));
-../RM_File/ladrc.h(83): warning:  #1299-D: members and base-classes will be initialized in declaration order, not in member initialisation list order
-  	 :r(r),h(h),max_x2(max_x2),Fun(Fun)
-../RM_File/ladrc.h(114): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-          this->r2_1 = 1.0 / (2.0 * this->r);//r2_1�?2r的倒数
-../RM_File/ladrc.h(186): warning:  #1299-D: members and base-classes will be initialized in declaration order, not in member initialisation list order
-  		:td(td),b(b),max_u(max_u),h(h),wc(wc),w0(w0),max_z2(max_z2)
-../RM_File/ladrc.h(186): warning:  #1299-D: members and base-classes will be initialized in declaration order, not in member initialisation list order
-  		:td(td),b(b),max_u(max_u),h(h),wc(wc),w0(w0),max_z2(max_z2)
-../RM_File/ladrc.h(231): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-            this->bt1 = 2.0 * this->w0;//β1
-../RM_File/ladrc.h(245): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-            this->bt1 = 3.0 * this->w0;//β1
-../RM_File/ladrc.h(246): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-            this->bt2 = 3.0 * this->w0 * this->w0;//β2
-../RM_File/ladrc.h(316): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-            this->kd = 2.0 * this->wc;
-../RM_File/RM_PID.h(199): warning:  #1299-D: members and base-classes will be initialized in declaration order, not in member initialisation list order
-  	:dt(dt),k(k),max_target_e(max_target_e),max_cout(max_cout),cout_k(cout_k){}
-../RM_File/RM_PID.h(199): warning:  #1299-D: members and base-classes will be initialized in declaration order, not in member initialisation list order
-  	:dt(dt),k(k),max_target_e(max_target_e),max_cout(max_cout),cout_k(cout_k){}
-../RM_File/RM_PID.h(262): warning:  #427-D: qualified name is not allowed in member declaration
-  	double UDE::UpData(double Xnt, double u, double k, double B, double max, double err);
-../RM_File/RM_PID.h(276): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  		this->ude.I_u = this->ude.I_u*0.7 ;
-../RM_File/RM_Motor.h(432): warning:  #1-D: last line of file ends without a newline
-  }
-../RM_File/RM_Wheel.h(22): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-        this->speed[0] = ((1.0 - ky) * vx + (1.0 - kx) * vy - vw);
-../RM_File/RM_Wheel.h(22): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-        this->speed[0] = ((1.0 - ky) * vx + (1.0 - kx) * vy - vw);
-../RM_File/RM_Wheel.h(23): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-        this->speed[1] = ((1.0 - ky) * vx - (1.0 - kx) * vy + vw);
-../RM_File/RM_Wheel.h(23): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-        this->speed[1] = ((1.0 - ky) * vx - (1.0 - kx) * vy + vw);
-../RM_File/RM_Wheel.h(24): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-        this->speed[2] = ((1.0 - ky) * vx + (1.0 - kx) * vy + vw);
-../RM_File/RM_Wheel.h(24): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-        this->speed[2] = ((1.0 - ky) * vx + (1.0 - kx) * vy + vw);
-../RM_File/RM_Wheel.h(25): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-        this->speed[3] = ((1.0 - ky) * vx - (1.0 - kx) * vy - vw);
-../RM_File/RM_Wheel.h(25): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-        this->speed[3] = ((1.0 - ky) * vx - (1.0 - kx) * vy - vw);
-../RM_File/RM_Wheel.h(62): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-        this->angle[0] = atan2(tempvx[0] , tempvy[0]) * 180 / 3.14 * 8191 / 360;         
-../RM_File/RM_Wheel.h(63): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-        this->angle[1] = atan2(tempvx[1] , tempvy[1]) * 180 / 3.14 * 8191 / 360;
-../RM_File/RM_Wheel.h(64): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-        this->angle[2] = atan2(tempvx[2] , tempvy[2]) * 180 / 3.14 * 8191 / 360;          
-../RM_File/RM_Wheel.h(65): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-        this->angle[3] = atan2(tempvx[3] , tempvy[3]) * 180 / 3.14 * 8191 / 360;
-../RM_File/RM_Wheel.h(38): warning:  #177-D: variable "angle"  was declared but never referenced
-        float angle = 45 * 3.14 / 180; 
-../RM_File/RM_RefereeSystem.h(190): warning:  #1-D: last line of file ends without a newline
-  extern uint8_t daohang_tx_buf[128];
-../RM_File/DM.h(207): warning:  #1-D: last line of file ends without a newline
-  }
-../RM_File/Total_stack.h(336): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  			yaw_e_radian = (yaw_e_xita + 90.0) * 0.017453;//转弧�?,+90是因为修正原本的角度
-../RM_File/Total_stack.h(407): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  				AGV_wheel.UpData(RC_LX * 24.8242 * CHASSIS_SPEED_ZOOM_VXY,RC_LY * 24.8242 * CHASSIS_SPEED_ZOOM_VXY,td_vw.x1 * CHASSIS_SPEED_ZOOM_VW * vxy_kvw,MAX_CHASSIS_SPEED);//底盘解算
-../RM_File/Total_stack.h(429): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  			sintt += 0.001;
-../RM_File/Total_stack.h(515): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  		sintt += 0.001;
-../RM_File/Total_stack.h(866): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  		ly = (asin(angle_ly / 180.0 * 3.1415926) * 43) * collide_magnify;
-..\Core\Src\main.cpp(131): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  		dianlupid = (-wheel_ladrc_left_1.u+wheel_ladrc_left_2.u+wheel_ladrc_right_1.u+(-wheel_ladrc_right_2.u))*0.25;
-..\Core\Src\main.cpp: 40 warnings, 0 errors
-compiling stm32f4xx_hal_pwr_ex.c...
-compiling system_stm32f4xx.c...
-compiling stm32f4xx_hal_pwr.c...
-compiling stm32f4xx_hal_cortex.c...
-compiling stm32f4xx_hal.c...
-compiling stm32f4xx_hal_exti.c...
-compiling stm32f4xx_hal_dma.c...
-compiling stm32f4xx_hal_tim_ex.c...
-compiling RM_RefereeSystem.cpp...
-..\RM_File\RM_RefereeSystem.h(190): warning:  #1-D: last line of file ends without a newline
-  extern uint8_t daohang_tx_buf[128];
-..\RM_File\RM_RefereeSystem.cpp(242): warning:  #2748-D: null argument provided for parameter marked with attribute "nonnull"
-  	memcpy(&tx_buf,0,sizeof(tx_buf));
-..\RM_File\RM_RefereeSystem.cpp(268): warning:  #2748-D: null argument provided for parameter marked with attribute "nonnull"
-  	memcpy(&tx_buf,0,sizeof(tx_buf));
-..\RM_File\RM_RefereeSystem.cpp(304): warning:  #2748-D: null argument provided for parameter marked with attribute "nonnull"
-  	memcpy(&tx_buf,0,sizeof(tx_buf));
-..\RM_File\RM_RefereeSystem.cpp(332): warning:  #2748-D: null argument provided for parameter marked with attribute "nonnull"
-  	memcpy(&tx_buf,0,sizeof(tx_buf));
-..\RM_File\RM_RefereeSystem.cpp(365): warning:  #2748-D: null argument provided for parameter marked with attribute "nonnull"
-  	memcpy(&rrrdata,0,sizeof(rrrdata));
-..\RM_File\RM_RefereeSystem.cpp: 6 warnings, 0 errors
-compiling stm32f4xx_hal_uart.c...
-compiling stm32f4xx_hal_tim.c...
-linking...
-Program Size: Code=35824 RO-data=2700 RW-data=272 ZI-data=13280  
-FromELF: creating hex file...
-"Infantry_Wheels_Chassis_F407_2024_7_17\Infantry_Wheels_Chassis_F407_2024_7_17.axf" - 0 Error(s), 46 Warning(s).
+"Infantry_Wheels_Chassis_F407_2024_7_17\Infantry_Wheels_Chassis_F407_2024_7_17.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -176,7 +51,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE:5.4.0
       Include file:  CMSIS\Core\Include\tz_context.h
-Build Time Elapsed:  00:00:06
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>
