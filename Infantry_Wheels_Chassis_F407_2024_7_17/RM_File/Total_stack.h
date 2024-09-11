@@ -406,6 +406,7 @@ void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim)//回调函数
 //				AGV_wheel.UpData(vx * 24.8242 * CHASSIS_SPEED_ZOOM_VXY,vy * 24.8242 * CHASSIS_SPEED_ZOOM_VXY,td_vw.x1 * CHASSIS_SPEED_ZOOM_VW * vxy_kvw,MAX_CHASSIS_SPEED);//底盘解算
 				AGV_wheel.UpData(RC_LX * 24.8242 * CHASSIS_SPEED_ZOOM_VXY,RC_LY * 24.8242 * CHASSIS_SPEED_ZOOM_VXY,td_vw.x1 * CHASSIS_SPEED_ZOOM_VW * vxy_kvw,MAX_CHASSIS_SPEED);//底盘解算
 //				AGV_wheel.UpData(RC_LX * 24.8242 * CHASSIS_SPEED_ZOOM_VXY,RC_LY * 24.8242 * CHASSIS_SPEED_ZOOM_VXY,td_vw.x1 * CHASSIS_SPEED_ZOOM_VW * vxy_kvw,MAX_CHASSIS_SPEED);//底盘解算
+				AGV_wheel.
 				//速度期望值赋值
 				tar_AGV_speed[0] = (float)(AGV_wheel.speed[0]);
 				tar_AGV_speed[1] = (float)(AGV_wheel.speed[1]);
