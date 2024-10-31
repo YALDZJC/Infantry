@@ -22,7 +22,7 @@ Dialog DLL:      TCM.DLL V1.46.0.0
  
 <h2>Project:</h2>
 F:\RM_CODE\Infantry\Infantry\Infantry_Wheels_Chassis_F407_2024_7_17\MDK-ARM\Infantry_Wheels_Chassis_F407_2024_7_17.uvprojx
-Project File Date:  10/11/2024
+Project File Date:  11/01/2024
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'E:\Keil5\ARM\ARMCC\Bin'
@@ -56,10 +56,12 @@ compiling main.cpp...
             this->bt2 = 3.0 * this->w0 * this->w0;//β2
 ../RM_File/ladrc.h(316): warning:  #1035-D: single-precision operand implicitly converted to double-precision
             this->kd = 2.0 * this->wc;
-../RM_File/RM_PID.h(196): warning:  #1299-D: members and base-classes will be initialized in declaration order, not in member initialisation list order
-  	:dt(dt),k(k),max_target_e(max_target_e),max_cout(max_cout),cout_k(cout_k){}
-../RM_File/RM_PID.h(196): warning:  #1299-D: members and base-classes will be initialized in declaration order, not in member initialisation list order
-  	:dt(dt),k(k),max_target_e(max_target_e),max_cout(max_cout),cout_k(cout_k){}
+..\RM_File\head\RM_Pid.h(6): error:  #256: invalid redeclaration of type name "Kpid_t"  (declared at line 6 of "..\RM_File\head\RM_PID.h")
+  struct Kpid_t
+..\RM_File\head\RM_Pid.h(39): error:  #256: invalid redeclaration of type name "Pid_t"  (declared at line 39 of "..\RM_File\head\RM_PID.h")
+  }Pid_t;
+..\RM_File\head\RM_Pid.h(41): error:  #256: invalid redeclaration of type name "RM_PID"  (declared at line 41 of "..\RM_File\head\RM_PID.h")
+  class RM_PID
 ../RM_File/RM_Wheel.h(22): warning:  #1035-D: single-precision operand implicitly converted to double-precision
         this->speed[0] = ((1.0 - ky) * vx + (1.0 - kx) * vy - vw);
 ../RM_File/RM_Wheel.h(22): warning:  #1035-D: single-precision operand implicitly converted to double-precision
@@ -88,6 +90,10 @@ compiling main.cpp...
   extern uint8_t daohang_tx_buf[128];
 ../RM_File/DM.h(207): warning:  #1-D: last line of file ends without a newline
   }
+../RM_File/def_variable.h(138): error:  #20: identifier "UDE" is undefined
+  UDE ude_chassis_0x205(0, 0, 0, 0);
+../RM_File/def_variable.h(138): error:  #18: expected a ")"
+  UDE ude_chassis_0x205(0, 0, 0, 0);
 ../RM_File/Total_stack.h(276): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   			yaw_e_radian = (yaw_e_xita + 90.0) * 0.017453;//转弧�?,+90是因为修正原本的角度
 ../RM_File/Total_stack.h(354): warning:  #1035-D: single-precision operand implicitly converted to double-precision
@@ -98,15 +104,14 @@ compiling main.cpp...
   				AGV_wheel.UpData(td_vx.x1* CHASSIS_SPEED_ZOOM_VXY, td_vy.x1 * CHASSIS_SPEED_ZOOM_VXY,td_vw.x1 * CHASSIS_SPEED_ZOOM_VW * vxy_kvw,MAX_CHASSIS_SPEED);//底盘解算
 ../RM_File/Total_stack.h(380): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   			sintt += 0.001;
+../RM_File/Total_stack.h(412): error:  #20: identifier "Get_Derivative" is undefined
+  		AGV_angle_speed_pid[0].GetPidPos(AGV_angle_speed_Init, AGV_pid[0].pid.cout + Get_Derivative(tar_AGV_angle[0], 10, 0), Motor6020.GetMotorDataSpeed(0x205), 30000);
 ../RM_File/Total_stack.h(800): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   		ly = (asin(angle_ly / 180.0 * 3.1415926) * 43) * collide_magnify;
 ..\Core\Src\main.cpp(130): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   		dianlupid = (-wheel_ladrc_left_1.u+wheel_ladrc_left_2.u+wheel_ladrc_right_1.u+(-wheel_ladrc_right_2.u))*0.25;
-..\Core\Src\main.cpp: 37 warnings, 0 errors
-linking...
-Program Size: Code=34040 RO-data=2700 RW-data=268 ZI-data=14564  
-FromELF: creating hex file...
-"Infantry_Wheels_Chassis_F407_2024_7_17\Infantry_Wheels_Chassis_F407_2024_7_17.axf" - 0 Error(s), 37 Warning(s).
+..\Core\Src\main.cpp: 35 warnings, 6 errors
+"Infantry_Wheels_Chassis_F407_2024_7_17\Infantry_Wheels_Chassis_F407_2024_7_17.axf" - 6 Error(s), 35 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -130,7 +135,8 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE:5.4.0
       Include file:  CMSIS\Core\Include\tz_context.h
-Build Time Elapsed:  00:00:03
+Target not created.
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

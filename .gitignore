@@ -1,7 +1,6 @@
-
-*.log
-*.lock
-*.htm
-*.dep
-*.log
-*.lock
+MDK-ARM/Infantry_Wheels_Chassis_F407_2024_7_17/
+MDK-ARM/*.uvoptx
+MDK-ARM/*.uvguix.*
+.vs/
+.vscode/
+CppProperties.json

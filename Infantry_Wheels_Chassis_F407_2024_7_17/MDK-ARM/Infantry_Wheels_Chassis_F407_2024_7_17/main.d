@@ -48,10 +48,11 @@ infantry_wheels_chassis_f407_2024_7_17\main.o: ../RM_File/RM_Key.h
 infantry_wheels_chassis_f407_2024_7_17\main.o: ../RM_File/RM_Clicker.h
 infantry_wheels_chassis_f407_2024_7_17\main.o: ../RM_File/RM_stm32fxxx_hal.h
 infantry_wheels_chassis_f407_2024_7_17\main.o: ../RM_File/RM_Can.h
-infantry_wheels_chassis_f407_2024_7_17\main.o: ../RM_File/RM_PID.h
+infantry_wheels_chassis_f407_2024_7_17\main.o: ..\RM_File\head\RM_PID.h
 infantry_wheels_chassis_f407_2024_7_17\main.o: ../RM_File/RM_Filter.h
 infantry_wheels_chassis_f407_2024_7_17\main.o: ../RM_File/ladrc.h
 infantry_wheels_chassis_f407_2024_7_17\main.o: ../RM_File/RM_Motor.h
+infantry_wheels_chassis_f407_2024_7_17\main.o: ..\RM_File\head\RM_Pid.h
 infantry_wheels_chassis_f407_2024_7_17\main.o: ../RM_File/RM_Wheel.h
 infantry_wheels_chassis_f407_2024_7_17\main.o: ../RM_File/RM_PM01.h
 infantry_wheels_chassis_f407_2024_7_17\main.o: ../RM_File/RM_RefereeSystem.h

@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../RM_File;..\MDK-ARM</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../RM_File;..\MDK-ARM;..\RM_File\head</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -539,6 +539,11 @@
           <GroupName>User</GroupName>
           <Files>
             <File>
+              <FileName>RM_Pid.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\RM_File\RM_Pid.cpp</FilePath>
+            </File>
+            <File>
               <FileName>Total_stack.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\RM_File\Total_stack.h</FilePath>
@@ -604,11 +609,6 @@
               <FilePath>..\RM_File\RM_Motor.h</FilePath>
             </File>
             <File>
-              <FileName>RM_Pid.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\RM_File\RM_Pid.h</FilePath>
-            </File>
-            <File>
               <FileName>RM_PM01.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\RM_File\RM_PM01.h</FilePath>
@@ -657,6 +657,16 @@
               <FileName>VMC.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\VMC.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Head</GroupName>
+          <Files>
+            <File>
+              <FileName>RM_Pid.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\RM_File\head\RM_Pid.h</FilePath>
             </File>
           </Files>
         </Group>
