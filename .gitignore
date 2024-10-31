@@ -1,7 +1,6 @@
-
-*.log
-*.lock
-*.htm
-*.dep
-*.log
-*.lock
+MDK-ARM/Infantry/
+MDK-ARM/*.uvoptx
+MDK-ARM/*.uvguix.*
+.vs/
+.vscode/
+CppProperties.json
