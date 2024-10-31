@@ -21,7 +21,7 @@ Target DLL:      CMSIS_AGDI.dll V1.32.12.0
 Dialog DLL:      TCM.DLL V1.46.0.0
  
 <h2>Project:</h2>
-F:\RM_CODE\RM_CODE\Infantry_Wheels_Gimbal_2024_7_18\MDK-ARM\Infantry_Wheels_Gimbal_2024_7_18.uvprojx
+F:\RM_CODE\Infantry\Infantry\Infantry_Wheels_Gimbal_2024_7_18\MDK-ARM\Infantry_Wheels_Gimbal_2024_7_18.uvprojx
 Project File Date:  07/28/2024
 
 <h2>Output:</h2>
@@ -104,29 +104,29 @@ compiling main.cpp...
   	b = -(c - 0.5);
 ..\RM_File\Total_stack.h(370): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   	t += 0.001;
-..\RM_File\Total_stack.h(402): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+..\RM_File\Total_stack.h(404): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   				pitch_target_angle_Encoder += 0.09;
-..\RM_File\Total_stack.h(406): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+..\RM_File\Total_stack.h(408): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   				pitch_target_angle_Encoder -= 0.09;
-..\RM_File\Total_stack.h(410): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+..\RM_File\Total_stack.h(412): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   				yaw_target_angle_gy -= 0.2;
-..\RM_File\Total_stack.h(414): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+..\RM_File\Total_stack.h(416): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   				yaw_target_angle_gy += 0.2;
-..\RM_File\Total_stack.h(594): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+..\RM_File\Total_stack.h(596): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   			if((fabs((fabs(ladrc_friction_l.z1) + fabs(ladrc_friction_r.z1)) * 0.5) - fabs(Friction_Speed)) < Friction_Speed * 0.4)is_on_MCL = true;
-..\RM_File\Total_stack.h(594): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+..\RM_File\Total_stack.h(596): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   			if((fabs((fabs(ladrc_friction_l.z1) + fabs(ladrc_friction_r.z1)) * 0.5) - fabs(Friction_Speed)) < Friction_Speed * 0.4)is_on_MCL = true;
-..\RM_File\Total_stack.h(599): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+..\RM_File\Total_stack.h(601): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   			if((fabs(fabs(ladrc_dial.z1) - fabs(Dial_Speed)) < Dial_Speed * 0.5))is_on_BP = true;
-..\RM_File\Total_stack.h(669): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+..\RM_File\Total_stack.h(671): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   			sintt += 0.001;
-..\RM_File\Total_stack.h(683): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  		pid_pitch_angle.GetPidPos(kpid_pitch_angle, tar_pitch.x1 * 22.75, Motor6020.GetMotorDataPos(PITCH_MOTOR_ID), 30000);
-..\RM_File\Total_stack.h(686): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+..\RM_File\Total_stack.h(684): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		tar = fmod((tar_pitch.x1 * 22.75), 8191);
+..\RM_File\Total_stack.h(701): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   		FF_pitch.UpData(tar_pitch.x1 * 22.75, FF_pitch_k);
 ..\Core\Src\main.cpp: 48 warnings, 0 errors
 linking...
-Program Size: Code=32576 RO-data=2908 RW-data=408 ZI-data=11384  
+Program Size: Code=33104 RO-data=2908 RW-data=408 ZI-data=11384  
 FromELF: creating hex file...
 "Infantry_Wheels_Gimbal_2024_7_18\Infantry_Wheels_Gimbal_2024_7_18.axf" - 0 Error(s), 48 Warning(s).
 
@@ -152,7 +152,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE:5.4.0
       Include file:  CMSIS\Core\Include\tz_context.h
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>

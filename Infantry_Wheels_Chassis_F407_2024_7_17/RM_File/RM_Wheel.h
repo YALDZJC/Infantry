@@ -43,16 +43,16 @@ typedef struct
         tempvy[i] = vy;
       }
       tempvw = -vw;
-      //线速度vy
-      tempvy[0] = tempvy[0];
-//      tempvy[1] = tempvy[1]-tempvw*cos(angle);
-      tempvy[2] = tempvy[2];
-//      tempvy[3] = tempvy[3]+tempvw*cos(angle);
+			
+      tempvy[0] = tempvy[0]-tempvw*cos(angle);
+      tempvy[1] = tempvy[1]-tempvw*cos(angle);
+      tempvy[2] = tempvy[2]+tempvw*cos(angle);
+      tempvy[3] = tempvy[3]+tempvw*cos(angle);
       //线速度vx
-      tempvx[0] = tempvx[0]+tempvw;
-//      tempvx[1] = tempvx[1]+tempvw*sin(angle);
-      tempvx[2] = tempvx[2]-tempvw;
-//      tempvx[3] = tempvx[3]-tempvw*sin(angle);
+      tempvx[0] = tempvx[0]-tempvw*sin(angle);
+      tempvx[1] = tempvx[1]+tempvw*sin(angle);
+      tempvx[2] = tempvx[2]+tempvw*sin(angle);
+      tempvx[3] = tempvx[3]-tempvw*sin(angle);
       //*x是比例
       this->speed[0] = sqrt(tempvy[0] * tempvy[0] + tempvx[0] * tempvx[0]) / 660.0f * MaxSpeed;
       this->speed[1] = sqrt(tempvy[1] * tempvy[1] + tempvx[1] * tempvx[1]) / 660.0f * MaxSpeed;

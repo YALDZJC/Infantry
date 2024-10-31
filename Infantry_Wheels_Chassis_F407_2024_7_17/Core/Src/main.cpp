@@ -117,12 +117,11 @@ int main(void)
 		//上下板子断链
 		Gimbal_to_Chassis_Data.dir = Gimbal_to_Chassis_Data.dir_time.ISDir(50);
 		if(Gimbal_to_Chassis_Data.dir)Get_Gimbal_to_Chassis_Init();
-		dir = 0;
+		dir = rmClicker.ISDir();
 		RM_RefereeSystem::RM_RefereeSystemDir();
 		
 		//上下板通信挂掉
 		HAL_GPIO_WritePin(GPIOG,GPIO_PIN_1,((GPIO_PinState)!dir));
-		
 		pm01.PM01SendFun();//发送超电
 				
 		darw_graphic_ui();//发送ui

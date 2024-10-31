@@ -80,16 +80,15 @@ void Total_tasks_Init()
 	dm_yaw.off();//大喵电机初始化	
 	Send_DM_CAN();
 	
-	ude_chassis[0].ude.separate_break = 400;
-	ude_chassis[1].ude.separate_break = 400;
-	ude_chassis[2].ude.separate_break = 400;
-	ude_chassis[3].ude.separate_break = 400;
+//	ude_chassis[0].ude.separate_break = 400;
+//	ude_chassis[1].ude.separate_break = 400;
+//	ude_chassis[2].ude.separate_break = 400;
+//	ude_chassis[3].ude.separate_break = 400;
 	
 	HAL_Delay(10);
 	
 	//记录上一次时间
 	uint64_t time_adrc = HAL_GetTick();
-	
 	
 	
 	//adrc收敛期
@@ -105,68 +104,7 @@ void Total_tasks_Init()
 RM_PID lsd;
 
 float now_vxy[4],num_vx,num_vy,now_angle,e_vx,e_vy,k_e_vxy = 0.001,expectations_vx,expectations_vy,vxy_zero_s;
-//主跑函数
-void Total_tasks_Run()
-{
-	int dir = rmClicker.ISDir();//遥控器断连处理
 
-	if(Total_tasks_staticTime.ISOne(2))//控制地盘can发送频率
-	{
-		if(!dir && RM_Clicker::RC_Ctl.rc.s2 != 2)
-		{					
-			/*
-			//车体速度解算（未完成）差个w自转速度
-			now_vxy[0] =  wheel_td_left_1 .x1;
-			now_vxy[1] =  wheel_td_left_2 .x1;
-			now_vxy[2] =  wheel_td_right_1.x1;
-			now_vxy[3] =  wheel_td_right_2.x1;
-			//求不为零的轮数
-			vxy_zero_s = 0;
-			for(int i = 0;i < 4;i++){if(fabs(now_vxy[i]) > 50)vxy_zero_s++;}
-			if(vxy_zero_s == 0)vxy_zero_s = 1;
-			//计算车体速度
-			num_vx = -(now_vxy[0] - now_vxy[1] + now_vxy[2] - now_vxy[3]) / vxy_zero_s;
-			num_vy =  (now_vxy[0] + now_vxy[1] + now_vxy[2] + now_vxy[3]) / vxy_zero_s;
-			//计算车体差速积分
-			e_vx += (RC_LX * 24.8242 * 0.1 - num_vx) * k_e_vxy;
-			e_vy += (RC_LY * 24.8242 * 0.1 - num_vy) * k_e_vxy;
-			//限幅
-			e_vx = fmod(e_vx,1000);
-			e_vy = fmod(e_vx,1000);			
-			//遥控器线速度
-			expectations_vx = RC_LX * 24.8242 * 0.1; 
-			expectations_vy = RC_LY * 24.8242 * 0.1; 
-			wheel_e.UpData(e_vx,e_vy,0,660.0 * 24.8242 * 0.1);
-
-			Send_Usart_Data("%f,%f\r\n",(float)(e_vx),(float)(e_vy));
-			*/
-			wheel.UpData(RC_LX * 24.8242 * 0.1,RC_LY * 24.8242 * 0.1,RC_RX * 8,660.0 * 24.8242 * 0.1);		
-//			Send_Usart_Data("%f,%f,%f\r\n",(float)(wheel_ladrc_left_1.feedback),(float)(wheel_ladrc_left_1.z1),(float)(wheel_ladrc_left_1.td.x1));
-		}		
-		else
-		{
-			e_vx = e_vy = 0;
-			memset(&wheel,0,sizeof(wheel));
-		}
-		
-		wheel_ladrc_left_1.up_data ( (wheel.speed[3] + wheel_e.speed[3]),Motor3508.GetMotorDataSpeed(0x201),1);
-		wheel_ladrc_left_2.up_data (-(wheel.speed[2] + wheel_e.speed[2]),Motor3508.GetMotorDataSpeed(0x202),1);
-		wheel_ladrc_right_1.up_data(-(wheel.speed[1] + wheel_e.speed[1]),Motor3508.GetMotorDataSpeed(0x203),1);
-		wheel_ladrc_right_2.up_data( (wheel.speed[0] + wheel_e.speed[0]),Motor3508.GetMotorDataSpeed(0x204),1);
-		
-		wheel_td_left_1 .td_quadratic(-Motor3508.GetMotorDataSpeed(0x201));
-		wheel_td_left_2 .td_quadratic(-Motor3508.GetMotorDataSpeed(0x202));
-		wheel_td_right_1.td_quadratic( Motor3508.GetMotorDataSpeed(0x203));
-		wheel_td_right_2.td_quadratic( Motor3508.GetMotorDataSpeed(0x204));
-		
-		setMSD(&msd_3508_2006,wheel_ladrc_left_1.u ,1);
-		setMSD(&msd_3508_2006,wheel_ladrc_left_2.u ,2);
-		setMSD(&msd_3508_2006,wheel_ladrc_right_1.u,3);
-		setMSD(&msd_3508_2006,wheel_ladrc_right_2.u,4);
-		//发送数据
-		Send_3508_CAN();
-	}
-}
 
 //can_filo0中断接收
 CAN_RxHeaderTypeDef RxHeader;	//can接收数据
@@ -179,7 +117,6 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 	{
 		Motor3508.Parse(RxHeader,RxHeaderData);
 		Motor6020.Parse(RxHeader,RxHeaderData);
-
 	}
 	if(hcan == &hcan2)
 	{
@@ -197,7 +134,9 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 //	Get_Gimbal_to_Chassis(huart);
-	RM_RefereeSystem::RM_RefereeSystemParse(huart);
+//	RM_RefereeSystem::RM_RefereeSystemParse(huart);
+		rmClicker.Parse(huart, 18);//遥控器解析
+
 }
 
 //获取云台到底盘数据初始化
@@ -324,11 +263,12 @@ void Get_Gimbal_to_Chassis(UART_HandleTypeDef* huart)
 		Gimbal_to_Chassis_Data.dir_time.UpLastTime();//串口更新时间
 	}
 }
-
+float speed;
+float avg_cur;
 void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim)//回调函数
 {
 	if(htim == &htim6)
-	{					
+	{							
 		if(dir == false)
 		{
 			vx = vy = vw = 0;
@@ -347,7 +287,8 @@ void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim)//回调函数
 				}
 				else if(GIMBAL_HOST_CHASSIS == true/*主云台模式*/)
 				{
-					vw = 0;//旋转量
+//					vw = 0;//旋转量
+					vw = RC_RX*10;
 					td_vw.td_quadratic(vw);//vw跟踪微方器
 				}
 				if(CHASSIS_GYRO == true/*小陀螺*/)
@@ -373,8 +314,6 @@ void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim)//回调函数
 //					td_vx.r = td_vy.r = 10;//修改速度跟踪
 				}
 				
-				td_vx.td_quadratic(RC_LX,true);//chassis_RC_LX跟踪微方器
-				td_vy.td_quadratic(RC_LY,true);//chassis_RC_LY跟踪微方器
 				//旋转矩阵
 				vx = (td_vx.x1 * cos_xita - td_vy.x1 * sin_xita) * shift_vxy_zoom;
 				vy = (td_vx.x1 * sin_xita + td_vy.x1 * cos_xita) * shift_vxy_zoom;
@@ -401,12 +340,19 @@ void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim)//回调函数
 					vxy_kvw = 1.5;
 				}
 			}
+			
+			td_vx.td_quadratic(RC_LX , true);//chassis_RC_LX跟踪微方器
+			td_vy.td_quadratic(RC_LY , true);//chassis_RC_LY跟踪微方器
+			td_vw.td_quadratic(RC_RX , true);
+			
 //				wheel.UpData(vx * 24.8242 * CHASSIS_SPEED_ZOOM_VXY,vy * 24.8242 * CHASSIS_SPEED_ZOOM_VXY,td_vw.x1 * CHASSIS_SPEED_ZOOM_VW * vxy_kvw,MAX_CHASSIS_SPEED);//底盘解算
 //			
 //				AGV_wheel.UpData(vx * 24.8242 * CHASSIS_SPEED_ZOOM_VXY,vy * 24.8242 * CHASSIS_SPEED_ZOOM_VXY,td_vw.x1 * CHASSIS_SPEED_ZOOM_VW * vxy_kvw,MAX_CHASSIS_SPEED);//底盘解算
-				AGV_wheel.UpData(RC_LX * 24.8242 * CHASSIS_SPEED_ZOOM_VXY,RC_LY * 24.8242 * CHASSIS_SPEED_ZOOM_VXY,td_vw.x1 * CHASSIS_SPEED_ZOOM_VW * vxy_kvw,MAX_CHASSIS_SPEED);//底盘解算
+//				vw = RC_RX*10;
+//				td_vw.td_quadratic(vw);//vw跟踪微方器
+			
+				AGV_wheel.UpData(td_vx.x1* CHASSIS_SPEED_ZOOM_VXY, td_vy.x1 * CHASSIS_SPEED_ZOOM_VXY,td_vw.x1 * CHASSIS_SPEED_ZOOM_VW * vxy_kvw,MAX_CHASSIS_SPEED);//底盘解算
 //				AGV_wheel.UpData(RC_LX * 24.8242 * CHASSIS_SPEED_ZOOM_VXY,RC_LY * 24.8242 * CHASSIS_SPEED_ZOOM_VXY,td_vw.x1 * CHASSIS_SPEED_ZOOM_VW * vxy_kvw,MAX_CHASSIS_SPEED);//底盘解算
-				AGV_wheel.
 				//速度期望值赋值
 				tar_AGV_speed[0] = (float)(AGV_wheel.speed[0]);
 				tar_AGV_speed[1] = (float)(AGV_wheel.speed[1]);
@@ -414,15 +360,19 @@ void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim)//回调函数
 				tar_AGV_speed[3] = (float)(AGV_wheel.speed[3]);
 			
 				//角度期望值赋值
-				tar_AGV_angle[0] = Motor6020.MinPosHelm(AGV_wheel.angle[0]+Chassis_angle_Init_0x205, Motor6020.GetMotorDataPos(0x205), &tar_AGV_speed[0], 16384, 8191);
-				tar_AGV_angle[1] = Motor6020.MinPosHelm(AGV_wheel.angle[1]+Chassis_angle_Init_0x206, Motor6020.GetMotorDataPos(0x206), &tar_AGV_speed[1], 16384, 8191);
-				tar_AGV_angle[2] = Motor6020.MinPosHelm(AGV_wheel.angle[2]+Chassis_angle_Init_0x207, Motor6020.GetMotorDataPos(0x207), &tar_AGV_speed[2], 16384, 8191);
-				tar_AGV_angle[3] = Motor6020.MinPosHelm(AGV_wheel.angle[3]+Chassis_angle_Init_0x208, Motor6020.GetMotorDataPos(0x208), &tar_AGV_speed[3], 16384, 8191);
+				tar_AGV_angle[0] = Motor6020.MinPosHelm(AGV_wheel.angle[0]+Chassis_angle_Init_0x205, Motor6020.GetMotorDataPos(0x205), &tar_AGV_speed[0], 16384, 8192);
+				tar_AGV_angle[1] = Motor6020.MinPosHelm(AGV_wheel.angle[1]+Chassis_angle_Init_0x206, Motor6020.GetMotorDataPos(0x206), &tar_AGV_speed[1], 16384, 8192);
+				tar_AGV_angle[2] = Motor6020.MinPosHelm(AGV_wheel.angle[2]+Chassis_angle_Init_0x207, Motor6020.GetMotorDataPos(0x207), &tar_AGV_speed[2], 16384, 8192);
+				tar_AGV_angle[3] = Motor6020.MinPosHelm(AGV_wheel.angle[3]+Chassis_angle_Init_0x208, Motor6020.GetMotorDataPos(0x208), &tar_AGV_speed[3], 16384, 8192);
 		}
-		if((dir == true) | (stop_mode == true))
+		if(dir == true)
 		{
 			tar_AGV_speed[0] = tar_AGV_speed[1] = tar_AGV_speed[2] = tar_AGV_speed[3] = 0;
-			tar_AGV_angle[0] = tar_AGV_angle[1] = tar_AGV_angle[2] = tar_AGV_angle[3] = 0;
+			
+			tar_AGV_angle[0] = Chassis_angle_Init_0x205;
+			tar_AGV_angle[1] = Chassis_angle_Init_0x206;
+			tar_AGV_angle[2] = Chassis_angle_Init_0x207;
+			tar_AGV_angle[3] = Chassis_angle_Init_0x208;
 		}
 		
 		if(switch_sin == true)
@@ -431,14 +381,27 @@ void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim)//回调函数
 
 			sin_out = 3000*sinf(2*3.1415926*sintt*HZ)+4000;
 		}
-//		else
-//			sin_out = angle_forward;
+		else
+		{
+				sin_out = tar_AGV_angle[0];
+		}
+		
+//		Speed_0x205.td_quadratic(tar_AGV_angle[0]);
+		der_sin = (sin_out - last_sin)*sin_k;
+//	last_sin = Get_Derivative(tar_AGV_angle[0], sin_k);
+
+		if(der_sin >= 380)
+			der_sin = 380;
+		if(der_sin <= -380)
+			der_sin = -380;
 		
 		//过零处理
-		Zero_crossing[0] = Motor6020.Zero_crossing_processing(tar_AGV_angle[0], Motor6020.GetMotorDataPos(0x205), 8191);
-		Zero_crossing[1] = Motor6020.Zero_crossing_processing(tar_AGV_angle[1], Motor6020.GetMotorDataPos(0x206), 8191);
-		Zero_crossing[2] = Motor6020.Zero_crossing_processing(tar_AGV_angle[2], Motor6020.GetMotorDataPos(0x207), 8191);
-		Zero_crossing[3] = Motor6020.Zero_crossing_processing(tar_AGV_angle[3], Motor6020.GetMotorDataPos(0x208), 8191);
+//		avg_cur = Motor6020.GetMotorDataPos(0x205);
+//		Handle_Angle8191_PID_Over_Zero(&tar_AGV_angle[0], &avg_cur);
+		Zero_crossing[0] = Motor6020.Zero_crossing_processing(sin_out, Motor6020.GetMotorDataPos(0x205), 8192);
+		Zero_crossing[1] = Motor6020.Zero_crossing_processing(tar_AGV_angle[1], Motor6020.GetMotorDataPos(0x206), 8192);
+		Zero_crossing[2] = Motor6020.Zero_crossing_processing(tar_AGV_angle[2], Motor6020.GetMotorDataPos(0x207), 8192);
+		Zero_crossing[3] = Motor6020.Zero_crossing_processing(tar_AGV_angle[3], Motor6020.GetMotorDataPos(0x208), 8192);
 
 		//PID运算		
 		AGV_pid[0].GetPidPos(AGV_pid_Init, Zero_crossing[0], Motor6020.GetMotorDataPos(0x205), 30000);
@@ -446,57 +409,38 @@ void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim)//回调函数
 		AGV_pid[2].GetPidPos(AGV_pid_Init, Zero_crossing[2], Motor6020.GetMotorDataPos(0x207), 30000);
 		AGV_pid[3].GetPidPos(AGV_pid_Init, Zero_crossing[3], Motor6020.GetMotorDataPos(0x208), 30000);
 		
-		//UDE设置
-		ude_chassis[0].UpData(((float)(Motor6020.GetMotorDataSpeed(0x205)) / 60)*2 , AGV_pid[0].pid.cout, 18, 0.01, 3000, AGV_pid[0].pid.now_e);
-		ude_chassis[1].UpData(((float)(Motor6020.GetMotorDataSpeed(0x206)) / 60)*2 , AGV_pid[1].pid.cout, 18, 0.01, 3000, AGV_pid[1].pid.now_e);
-		ude_chassis[2].UpData(((float)(Motor6020.GetMotorDataSpeed(0x207)) / 60)*2 , AGV_pid[2].pid.cout, 18, 0.01, 3000, AGV_pid[2].pid.now_e);
-		ude_chassis[3].UpData(((float)(Motor6020.GetMotorDataSpeed(0x208)) / 60)*2 , AGV_pid[3].pid.cout, 18, 0.01, 3000, AGV_pid[3].pid.now_e);
+		AGV_angle_speed_pid[0].GetPidPos(AGV_angle_speed_Init, AGV_pid[0].pid.cout + Get_Derivative(tar_AGV_angle[0], 10, 0), Motor6020.GetMotorDataSpeed(0x205), 30000);
+		AGV_angle_speed_pid[1].GetPidPos(AGV_angle_speed_Init, AGV_pid[1].pid.cout + Get_Derivative(tar_AGV_angle[1], 10, 1), Motor6020.GetMotorDataSpeed(0x206), 30000);
+		AGV_angle_speed_pid[2].GetPidPos(AGV_angle_speed_Init, AGV_pid[2].pid.cout + Get_Derivative(tar_AGV_angle[2], 10, 2), Motor6020.GetMotorDataSpeed(0x207), 30000);
+		AGV_angle_speed_pid[3].GetPidPos(AGV_angle_speed_Init, AGV_pid[3].pid.cout + Get_Derivative(tar_AGV_angle[3], 10, 3) , Motor6020.GetMotorDataSpeed(0x208), 30000);
 
-		//adrc更新
-		wheel_ladrc_left_1.up_data ( (-tar_AGV_speed[0]),Motor3508.GetMotorDataSpeed(0x201),1);
-		wheel_ladrc_left_2.up_data ( (-tar_AGV_speed[1]),Motor3508.GetMotorDataSpeed(0x202),1);
-		wheel_ladrc_left_1.up_data ( (-tar_AGV_speed[2]),Motor3508.GetMotorDataSpeed(0x203),1);
-		wheel_ladrc_left_1.up_data ( (-tar_AGV_speed[3]),Motor3508.GetMotorDataSpeed(0x204),1);
-		
-		wheel_td_left_1 .td_quadratic(-Motor3508.GetMotorDataSpeed(0x201));
-		wheel_td_left_2 .td_quadratic(-Motor3508.GetMotorDataSpeed(0x202));
-		wheel_td_right_1.td_quadratic( Motor3508.GetMotorDataSpeed(0x202));
-		wheel_td_right_2.td_quadratic( Motor3508.GetMotorDataSpeed(0x204));
+		//UDE设置
+//			ude_chassis_0x205.UpData(((float)(Angle_speed.x1)) , ((AGV_pid[0].pid.cout*0.546133)*0.741)*0.00001, AGV_pid[0].pid.now_e);
+//		ude_chassis[1].UpData(((float)(Motor6020.GetMotorDataSpeed(0x206)) / 60)*2 , AGV_pid[1].pid.cout, 18, 0.01, 3000, AGV_pid[1].pid.now_e);
+//		ude_chassis[2].UpData(((float)(Motor6020.GetMotorDataSpeed(0x207)) / 60)*2 , AGV_pid[2].pid.cout, 18, 0.01, 3000, AGV_pid[2].pid.now_e);
+//		ude_chassis[3].UpData(((float)(Motor6020.GetMotorDataSpeed(0x208)) / 60)*2 , AGV_pid[3].pid.cout, 18, 0.01, 3000, AGV_pid[3].pid.now_e);
+
+		//PID更新		
+		AGV_speed[0].GetPidPos(AGV_speed_Init, (-tar_AGV_speed[0]), Motor3508.GetMotorDataSpeed(0x201), 16384);
+		AGV_speed[1].GetPidPos(AGV_speed_Init, (-tar_AGV_speed[1]), Motor3508.GetMotorDataSpeed(0x202), 16384);
+		AGV_speed[2].GetPidPos(AGV_speed_Init, (tar_AGV_speed[2]), Motor3508.GetMotorDataSpeed(0x203), 16384);
+		AGV_speed[3].GetPidPos(AGV_speed_Init, (tar_AGV_speed[3]), Motor3508.GetMotorDataSpeed(0x204), 16384);
 				
-		setMSD(&msd_3508_2006,wheel_ladrc_left_1.u ,1);
-		setMSD(&msd_3508_2006,wheel_ladrc_left_2.u ,2);
-		setMSD(&msd_3508_2006,wheel_ladrc_right_1.u,3);
-		setMSD(&msd_3508_2006,wheel_ladrc_right_2.u,4);
-		
-		setMSD(&msd_6020, AGV_pid[0].pid.cout - ude_chassis[0].ude.cout, Get_MOTOR_SET_ID_6020(0x205));
-		setMSD(&msd_6020, AGV_pid[1].pid.cout - ude_chassis[1].ude.cout, Get_MOTOR_SET_ID_6020(0x206));
-		setMSD(&msd_6020, AGV_pid[2].pid.cout - ude_chassis[2].ude.cout, Get_MOTOR_SET_ID_6020(0x207));
-		setMSD(&msd_6020, AGV_pid[3].pid.cout - ude_chassis[3].ude.cout, Get_MOTOR_SET_ID_6020(0x208));
+		setMSD(&msd_3508_2006, AGV_speed[0].pid.cout, 1);
+		setMSD(&msd_3508_2006, AGV_speed[1].pid.cout, 2);
+		setMSD(&msd_3508_2006, AGV_speed[2].pid.cout, 3);
+		setMSD(&msd_3508_2006, AGV_speed[3].pid.cout, 4);
+
+		setMSD(&msd_6020, AGV_angle_speed_pid[0].pid.cout, Get_MOTOR_SET_ID_6020(0x205));
+		setMSD(&msd_6020, AGV_angle_speed_pid[1].pid.cout, Get_MOTOR_SET_ID_6020(0x206));
+		setMSD(&msd_6020, AGV_angle_speed_pid[2].pid.cout, Get_MOTOR_SET_ID_6020(0x207));
+		setMSD(&msd_6020, AGV_angle_speed_pid[3].pid.cout, Get_MOTOR_SET_ID_6020(0x208));
 
 	}
 	if(htim == &htim7)
 	{
-		if((dir == true) | (stop_mode == true))
-		{
-				dm_yaw.off();
-				set_send_graphic_queue_is_Delete_all();
-				dm_is_open = false;
-	
-		}
-		else
-		{
-			if(dm_is_open == false)//首次启动发送
-			{
-				darw_graphic_static_ui_init();
 
-				dm_yaw.on();
-				dm_is_open = true;
-			} 
-			else 
-			{
-				dm_yaw.ctrl_motor(0, 0, 0, 0.5, 0);
-			}
-		}
+
 	}
 	
 	if(htim == &htim5)
@@ -506,34 +450,23 @@ void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim)//回调函数
 		{
 			Send_6020_CAN();
 		}
-		else
+		else if(Send_ms == 2)																																																																																																																																																																																																																																																																																																																																																																																																			
 		{
 			Send_3508_CAN();
 		}
 		Send_ms++;
-		Send_ms %= 2;
-
-		sintt += 0.001;
-
-		sin_out =  20*sinf(2*3.1415926*sintt*0.3)+292;
-		sin_out =  20*sinf(2*3.1415926*sintt*0.5)+292;
-//			pitch_out = 40*sinf(2*3.1415926*sintt*0.1)+90;
-		pitch_out += RC_RY*0.0005;
-		yaw_out += RC_RX*0.05;
-		yaw_out += RC_RX*0.005;
+		Send_ms %= 3;
 		
-		if(yaw_out < 0)
-			yaw_out += 360;
-		if(yaw_out > 360)
-			yaw_out -= 360;
-	// *((float*)&send_str2[0]) = td_zero.x2;
-	// *((float*)&send_str2[4]) = Zero_crossing_forward;
-	// *((float*)&send_str2[8]) = Motor6020.GetMotorDataPos(0x205);
-	// *((float*)&send_str2[12]) = sin_out;
-	// *((float*)&send_str2[16]) = I_u0_forward - td_ude.x1;
+		*((float*)&send_str2[0]) = sin_out;
+		*((float*)&send_str2[4]) = Motor6020.GetMotorDataPos(0x205);
+		*((float*)&send_str2[8]) = tar_AGV_angle[0];
+//		*((float*)&send_str2[12]) = ude_chassis_0x205.ude.Xnt;
 
-	// *((uint32_t*)&send_str2[sizeof(float) * (7)]) = 0x7f800000;
-	// HAL_UART_Transmit_DMA(&Send_Usart_Data_Huart, send_str2, sizeof(float) * (7 + 1));
+		*((float*)&send_str2[12]) = 0;
+//		*((float*)&send_str2[20]) = Motor6020.GetMotorDataSpeed(0x205);
+
+		*((uint32_t*)&send_str2[sizeof(float) * (7)]) = 0x7f800000;
+		HAL_UART_Transmit_DMA(&Send_Usart_Data_Huart, send_str2, sizeof(float) * (7 + 1));
 
 	}
 }

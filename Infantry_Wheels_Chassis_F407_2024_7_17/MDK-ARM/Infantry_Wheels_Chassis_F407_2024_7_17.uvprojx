@@ -544,14 +544,14 @@
               <FilePath>..\RM_File\Total_stack.h</FilePath>
             </File>
             <File>
-              <FileName>ch_gyro_232.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\RM_File\ch_gyro_232.h</FilePath>
-            </File>
-            <File>
               <FileName>def_variable.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\RM_File\def_variable.h</FilePath>
+            </File>
+            <File>
+              <FileName>ch_gyro_232.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\RM_File\ch_gyro_232.h</FilePath>
             </File>
             <File>
               <FileName>DM.h</FileName>

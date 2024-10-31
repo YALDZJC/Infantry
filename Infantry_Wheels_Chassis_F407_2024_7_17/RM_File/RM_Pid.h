@@ -78,7 +78,7 @@ inline void RM_PID::SetFrequency(double Frequency)
 inline double RM_PID::GetPidPos(Kpid_t kpid, double cin, double feedback, double max)
 {
   //分频比较
-	if(this->pid.Frequency > this->pid._Frequency_){this->pid._Frequency_++;return this->pid.cout;}
+//	if(this->pid.Frequency > this->pid._Frequency_){this->pid._Frequency_++;return this->pid.cout;}
 	//分频计数
 	this->pid._Frequency_ = 0;
 	//输入
@@ -92,20 +92,17 @@ inline double RM_PID::GetPidPos(Kpid_t kpid, double cin, double feedback, double
    //p值
    this->pid.p = kpid.kp * this->pid.now_e;
    //变速积分
-//	if(fabs(this->pid.now_e) <= this->pid.IerrorB)
-//	{
-//		this->pid.Di = this->pid.now_e * 0.001;
-//	}
-//	if((this->pid.IerrorB < fabs(this->pid.now_e)) & (fabs(this->pid.now_e) <= this->pid.IerrorA + this->pid.IerrorB))
-//	{
-//		this->pid.Di = (this->pid.IerrorA - fabs(this->pid.now_e) + this->pid.IerrorB) / this->pid.IerrorA * this->pid.now_e * 0.001;
-//	}
-//	if(fabs(this->pid.now_e) > (this->pid.IerrorA + this->pid.IerrorB))
-//	{
-//		this->pid.Di = 0;
-//	}
+	if (fabs(this->pid.now_e) < this->pid.IerrorB)
+	{
+			// 误差较小时，进行积分运算
+			this->pid.Di += this->pid.now_e;
+	}
+	else
+	{
+			// 误差较大时，不进行积分运算
+			this->pid.Di = 0;
+	}
 	//积分计算
-	this->pid.Di += pid.now_e;
 	this->pid.i = this->pid.Di * kpid.ki;
 	//积分限幅
 	if(this->pid.i > this->pid.MixI) this->pid.i = this->pid.MixI;
@@ -259,29 +256,57 @@ class UDE
 public:
 	UDE_t ude;
 
-	double UDE::UpData(double Xnt, double u, double k, double B, double max, double err);
-};
-
-double UDE::UpData(double Xnt, double u, double k, double B, double max, double err)
-{
-	this->ude.Xnt = Xnt;
-	this->ude.I_u += ((u/1.52587891)*0.00018311*0.741) * B;
-	
-	//积分限幅
-	if(this->ude.I_u > this->ude.max) this->ude.I_u = this->ude.max;
-	if(this->ude.I_u < -this->ude.max) this->ude.I_u = -this->ude.max;
-	
-	if(err > this->ude.separate_break)
+	UDE(double k, double B, double max, double separate_break)
 	{
-		this->ude.I_u = this->ude.I_u*0.7 ;
+			ude.k = k;
+			ude.B = B;
+			ude.max = max;
+			ude.separate_break = separate_break;
+			ude.Xnt = 0;
+			ude.I_u = 0;
+			ude.ft = 0;
+			ude.f = 0;
+			ude.cout = 0;
 	}
 
-	this->ude.k = k;
-	this->ude.B = B;
-	this->ude.max = max;
-	this->ude.ft = k*(this->ude.Xnt - this->ude.I_u);
+	double UpData(double Xnt, double u, double err);
+};
+
+double UDE::UpData(double Xnt, double u, double err)
+{
+    this->ude.Xnt = Xnt;
+
+		this->ude.I_u += u * this->ude.B;
+    // 积分限幅
+    if (this->ude.I_u > this->ude.max) this->ude.I_u = this->ude.max;
+    if (this->ude.I_u < -this->ude.max) this->ude.I_u = -this->ude.max;
+
+
+
+    this->ude.ft = this->ude.k * (this->ude.Xnt - this->ude.I_u);
+    this->ude.cout = this->ude.ft / this->ude.B;
+
+    return this->ude.cout;
+}
+
+double Get_Derivative(int x, float k, int id)
+{
+    double num;
+		double Derivative;		
+		static double last_num[4] = {0};
+
+    num = x;
+    // 计算微分
+    Derivative = (num - last_num[id]) * k;
+    
+    // 更新 last_num 为当前值
+    last_num[id] = num;
 	
-	this->ude.cout = this->ude.ft / B;
+	    // 限制 num 的范围
+    if (Derivative >= 380)
+        Derivative = 380;
+    if (Derivative <= -380)
+        Derivative = -380;
 	
-	return this->ude.cout;
+    return Derivative;
 }

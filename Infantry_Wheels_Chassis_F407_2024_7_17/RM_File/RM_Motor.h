@@ -430,3 +430,21 @@ float Zero_crossing_processing(float expectations, float feedback, float maxpos 
 	}
 	return tempcin;
 }
+
+void Handle_Angle8191_PID_Over_Zero(float *tar, float *cur)
+{
+	if(*tar - *cur > 4096)    //4096 ：半圈机械角度
+	{
+		*cur += 8192;        //8191,8192无所谓了，四舍五入
+	}
+	else if(*tar - *cur < -4096)
+	{
+		*cur = *cur - 8192;
+	}
+	else
+	{
+		//*cur = *cur;
+		// do nothing
+	}
+}
+

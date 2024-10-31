@@ -42,6 +42,10 @@ void RM_Can_Send(CAN_HandleTypeDef* han,uint32_t StdId,uint8_t* s_data,uint32_t 
 	TxHeader.RTR = CAN_RTR_DATA;//数据帧
 	TxHeader.StdId = StdId;//id
 	TxHeader.TransmitGlobalTime = DISABLE;
-	//发送邮箱
-	HAL_CAN_AddTxMessage(han,&TxHeader,s_data,&pTxMailbox);
+	
+	if(HAL_CAN_GetTxMailboxesFreeLevel(&hcan1) != 0)
+	{
+		//发送邮箱
+		HAL_CAN_AddTxMessage(han,&TxHeader,s_data,&pTxMailbox);
+	}
 }

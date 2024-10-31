@@ -62,16 +62,16 @@ x							x						 2						 x						 x						2							急停（9）
 #define CHASSIS_TOP (Gimbal_to_Chassis_Data.chassis_top)//底盘跟随云台模式
 #define MAX_CHASSIS_SPEED 16384.0//最大速度
 #define CHASSIS_SPEED_ZOOM_VW 1.0//放大因子
-#define CHASSIS_SPEED_ZOOM_VXY 0.2//放大因子
+#define CHASSIS_SPEED_ZOOM_VXY 0.5//放大因子
 #define GY_V_SET 600//小陀螺+-速度
 #define W_V_Init 5000 //小陀螺初始转速
 #define YD_V_SET 0.12//平移+-速度
 #define YD_V_Init 1 //平移初始转速
 
-#define Chassis_angle_Init_0x205 0
-#define Chassis_angle_Init_0x206 0
-#define Chassis_angle_Init_0x207 0
-#define Chassis_angle_Init_0x208 0
+#define Chassis_angle_Init_0x205 7088
+#define Chassis_angle_Init_0x206 6445
+#define Chassis_angle_Init_0x207 1622
+#define Chassis_angle_Init_0x208 5093
 /***************************变量声明*********************************/
 //期望值
 float tar_AGV_angle[4];
@@ -100,9 +100,12 @@ SteeringWheel_t AGV_wheel;
 
 
 bool switch_sin = 0;
-float sintt, sin_out,pitch_out, yaw_out, zero_yaw;
+bool is_ude = 0;
+float sintt, sin_out,pitch_out, yaw_out, zero_yaw, tar_angle, last_sin, der_sin, sin_k;
 
-float HZ;
+float HZ = 0.1;
+
+
 
 DM dm_yaw;
 bool dm_is_open;//达妙启动标志位
@@ -120,15 +123,24 @@ WheatWheel_t wheel_e;
 
 float diagonally_factor = 0;//斜向因子
 LADRC_quadratic wheel_ladrc_left_1 (TD_quadratic(50,0,0),8,400,60,16384);
-LADRC_quadratic wheel_ladrc_left_2 (TD_quadratic(50,0,0),8,700,110,16384);
+LADRC_quadratic wheel_ladrc_left_2 (TD_quadratic(50,0,0),8,400,60,16384);
 LADRC_quadratic wheel_ladrc_right_1(TD_quadratic(50,0,0),8,400,60,16384);
 LADRC_quadratic wheel_ladrc_right_2(TD_quadratic(50,0,0),8,400,60,16384);
 
+Kpid_t AGV_pid_Init(0.15, 0.003, 0);
+Kpid_t AGV_angle_speed_Init(200, 0, 0);
+
+TD_quadratic Speed_0x205(100);
+
 RM_PID AGV_pid[4];
-UDE ude_chassis[4];
+RM_PID AGV_angle_speed_pid[4];
+
+UDE ude_chassis_0x205(0, 0, 0, 0);
+
+RM_PID AGV_speed[4];
+Kpid_t AGV_speed_Init(5, 0, 0);
 
 
-Kpid_t AGV_pid_Init(20, 0, 1);
 
 TD_quadratic wheel_td_left_1 (150);
 TD_quadratic wheel_td_left_2 (150);
@@ -136,8 +148,8 @@ TD_quadratic wheel_td_right_1(150);
 TD_quadratic wheel_td_right_2(150);
 
 TD_quadratic td_vw(10);
-TD_quadratic td_vx(4);
-TD_quadratic td_vy(4);
+TD_quadratic td_vx(40);
+TD_quadratic td_vy(40);
 TD_quadratic td_zero(80);
 
 float shift_vxy_zoom = 1;//留给shift冲刺模式，速度因子

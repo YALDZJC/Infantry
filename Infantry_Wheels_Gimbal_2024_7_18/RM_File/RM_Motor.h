@@ -291,7 +291,7 @@ int GET_Motor_ID_ADDRESS_BIND_(RM_Motor* _motor_,int address)
 #define _Motor6020_SIZE 2
 
 Motor_t _Motor2006_[_Motor2006_SIZE] = { 0 };uint8_t _Motor2006_ID_[_Motor2006_SIZE] = { 1 };
-Motor_t _Motor3508_[_Motor3508_SIZE] = { 0 };uint8_t _Motor3508_ID_[_Motor3508_SIZE] = { 3,2 };
+Motor_t _Motor3508_[_Motor3508_SIZE] = { 0 };uint8_t _Motor3508_ID_[_Motor3508_SIZE] = { 3,4 };
 Motor_t _Motor6020_[_Motor6020_SIZE] = { 0 };uint8_t _Motor6020_ID_[_Motor6020_SIZE] = { 1,2 };
 RM_Motor Motor2006(0x200,_Motor2006_SIZE,_Motor2006_,_Motor2006_ID_);
 RM_Motor Motor3508(0x200,_Motor3508_SIZE,_Motor3508_,_Motor3508_ID_);
@@ -394,4 +394,22 @@ float Zero_crossing_processing(float expectations, float feedback, float maxspee
 	if(expectations - feedback > maxspeed * 0.5)expectations -= maxspeed;
 	else if(expectations - feedback < -maxspeed * 0.5)expectations += maxspeed;
 	return expectations;
+}
+
+float Zero_crossing(float expectations, float feedback, float maxpos )
+{
+	double tempcin = expectations;
+	if(maxpos != 0)
+	{
+		tempcin = fmod(expectations,maxpos);
+		double x1 = feedback;
+		if(tempcin < 0)
+			x1 -= maxpos;
+		//过0处理
+		if(tempcin - feedback < -maxpos/2)
+			tempcin += maxpos;			
+		if(tempcin - feedback > maxpos/2)
+			tempcin -= maxpos;
+	}
+	return tempcin;
 }

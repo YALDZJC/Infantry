@@ -1,7 +1,7 @@
 Dependencies for Project 'Infantry_Wheels_Chassis_F407_2024_7_17', Target 'Infantry_Wheels_Chassis_F407_2024_7_17': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
 F (startup_stm32f407xx.s)(0x66A62FEB)(--cpu Cortex-M4.fp.sp -g --apcs=interwork -I.\RTE\_Infantry_Wheels_Chassis_F407_2024_7_17-IC:\Users\Administrator.DESKTOP-IAACAVF\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\Administrator.DESKTOP-IAACAVF\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include--pd "__UVISION_VERSION SETA 532" --pd "_RTE_ SETA 1" --pd "STM32F407xx SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f407xx.lst --xref -o infantry_wheels_chassis_f407_2024_7_17\startup_stm32f407xx.o --depend infantry_wheels_chassis_f407_2024_7_17\startup_stm32f407xx.d)
-F (..\Core\Src\main.cpp)(0x66A0C6B1)(--cpp -c --cpu Cortex-M4.fp.sp -g -O2 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../RM_File -I ..\MDK-ARM-I.\RTE\_Infantry_Wheels_Chassis_F407_2024_7_17-IC:\Users\Administrator.DESKTOP-IAACAVF\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\Administrator.DESKTOP-IAACAVF\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="532" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o infantry_wheels_chassis_f407_2024_7_17\main.o --omf_browse infantry_wheels_chassis_f407_2024_7_17\main.crf --depend infantry_wheels_chassis_f407_2024_7_17\main.d)
+F (..\Core\Src\main.cpp)(0x6708DE14)(--cpp -c --cpu Cortex-M4.fp.sp -g -O2 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../RM_File -I ..\MDK-ARM-I.\RTE\_Infantry_Wheels_Chassis_F407_2024_7_17-IC:\Users\Administrator.DESKTOP-IAACAVF\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\Administrator.DESKTOP-IAACAVF\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="532" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o infantry_wheels_chassis_f407_2024_7_17\main.o --omf_browse infantry_wheels_chassis_f407_2024_7_17\main.crf --depend infantry_wheels_chassis_f407_2024_7_17\main.d)
 I (../Core/Inc/main.h)(0x66972084)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x668114F3)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x66972084)
@@ -39,8 +39,8 @@ I (../Core/Inc/dma.h)(0x66972084)
 I (../Core/Inc/tim.h)(0x6697A8FA)
 I (../Core/Inc/usart.h)(0x66972084)
 I (../Core/Inc/gpio.h)(0x66972084)
-I (../RM_File/Total_stack.h)(0x66A0BA4F)
-I (../RM_File/def_variable.h)(0x66A0A955)
+I (../RM_File/Total_stack.h)(0x671FA448)
+I (../RM_File/def_variable.h)(0x671D6AE9)
 I (../RM_File/RM_StaticTime.h)(0x66972085)
 I (../RM_File/RM_stdxxx.h)(0x66972085)
 I (E:\Keil5\ARM\ARMCC\include\math.h)(0x5F63877C)
@@ -49,12 +49,12 @@ I (E:\Keil5\ARM\ARMCC\include\string.h)(0x5F63878A)
 I (../RM_File/RM_Key.h)(0x66972085)
 I (../RM_File/RM_Clicker.h)(0x66A63013)
 I (../RM_File/RM_stm32fxxx_hal.h)(0x66972085)
-I (../RM_File/RM_Can.h)(0x66972085)
-I (../RM_File/RM_PID.h)(0x66AC07F2)
+I (../RM_File/RM_Can.h)(0x671FA3BD)
+I (../RM_File/RM_PID.h)(0x671F965F)
 I (../RM_File/RM_Filter.h)(0x66972085)
 I (../RM_File/ladrc.h)(0x66972085)
-I (../RM_File/RM_Motor.h)(0x669DC0F7)
-I (../RM_File/RM_Wheel.h)(0x66972085)
+I (../RM_File/RM_Motor.h)(0x671E2F7D)
+I (../RM_File/RM_Wheel.h)(0x6708E3A1)
 I (../RM_File/RM_PM01.h)(0x669DBFF2)
 I (../RM_File/RM_RefereeSystem.h)(0x66972085)
 I (../RM_File/RM_RefereeSystemCRC.h)(0x66972085)
@@ -874,27 +874,27 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x668114F3)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x668114F3)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x668114F3)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x668114F3)
-F (..\RM_File\Total_stack.h)(0x66A0BA4F)()
+F (..\RM_File\Total_stack.h)(0x671FA448)()
+F (..\RM_File\def_variable.h)(0x671D6AE9)()
 F (..\RM_File\ch_gyro_232.h)(0x66972085)()
-F (..\RM_File\def_variable.h)(0x66A0A955)()
 F (..\RM_File\DM.h)(0x669765F2)()
 F (..\RM_File\ladrc.h)(0x66972085)()
 F (..\RM_File\MF9025.h)(0x66972085)()
 F (..\RM_File\MyPM01.h)(0x66972085)()
-F (..\RM_File\RM_Can.h)(0x66972085)()
+F (..\RM_File\RM_Can.h)(0x671FA3BD)()
 F (..\RM_File\RM_CHxxxGy.h)(0x66972085)()
 F (..\RM_File\RM_Clicker.h)(0x66A63013)()
 F (..\RM_File\RM_Filter.h)(0x66972085)()
 F (..\RM_File\RM_Key.h)(0x66972085)()
-F (..\RM_File\RM_Motor.h)(0x669DC0F7)()
-F (..\RM_File\RM_Pid.h)(0x66AC07F2)()
+F (..\RM_File\RM_Motor.h)(0x671E2F7D)()
+F (..\RM_File\RM_Pid.h)(0x671F965F)()
 F (..\RM_File\RM_PM01.h)(0x669DBFF2)()
 F (..\RM_File\RM_RefereeSystem.h)(0x66972085)()
 F (..\RM_File\RM_RefereeSystemCRC.h)(0x66972085)()
 F (..\RM_File\RM_StaticTime.h)(0x66972085)()
 F (..\RM_File\RM_stdxxx.h)(0x66972085)()
 F (..\RM_File\RM_stm32fxxx_hal.h)(0x66972085)()
-F (..\RM_File\RM_Wheel.h)(0x66972085)()
+F (..\RM_File\RM_Wheel.h)(0x6708E3A1)()
 F (..\RM_File\RM_RefereeSystemCRC.cpp)(0x66972085)(--cpp -c --cpu Cortex-M4.fp.sp -g -O2 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../RM_File -I ..\MDK-ARM-I.\RTE\_Infantry_Wheels_Chassis_F407_2024_7_17-IC:\Users\Administrator.DESKTOP-IAACAVF\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Users\Administrator.DESKTOP-IAACAVF\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="532" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o infantry_wheels_chassis_f407_2024_7_17\rm_refereesystemcrc.o --omf_browse infantry_wheels_chassis_f407_2024_7_17\rm_refereesystemcrc.crf --depend infantry_wheels_chassis_f407_2024_7_17\rm_refereesystemcrc.d)
 I (..\RM_File\RM_RefereeSystemCRC.h)(0x66972085)
 I (..\RM_File\RM_stdxxx.h)(0x66972085)
@@ -944,4 +944,4 @@ I (E:\Keil5\ARM\ARMCC\include\stdlib.h)(0x5F63877C)
 I (E:\Keil5\ARM\ARMCC\include\string.h)(0x5F63878A)
 I (..\RM_File\RM_StaticTime.h)(0x66972085)
 I (..\RM_File\RM_Key.h)(0x66972085)
-F (.\VMC.h)(0x66AC07EB)()
+F (.\VMC.h)(0x66AC09BF)()

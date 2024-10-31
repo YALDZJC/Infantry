@@ -149,7 +149,7 @@ bool is_on_test = 0;
 RM_Key Test_key;
 
 //是否运行
-bool is_run = 0;
+bool is_run = 1;
 //速度反向
 bool is_v_reverse = 0;
 
@@ -300,7 +300,7 @@ RM_Key C_Key;//C键触发开关仓门舵机
 
 RM_Key V_Key;//V键触发开关仓门舵机
 
-RM_Servos servos;//仓门舵机
+//RM_Servos servos;//仓门舵机
 float servos_angle;//舵机角度
 float servos_angle_on = 0;//初始舵机角度，开
 float servos_angle_off = 80;//舵机固定角度，关

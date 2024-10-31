@@ -152,7 +152,7 @@ uint8_t send_str2[64];
 void Total_tasks_Run()
 {	
 //	ch_gyro_232_ore(&ch_gyro_232_uart_chassis,&chGy_chassis);//处理陀螺仪ore问题
-	servos.SetAngle(servos_angle);//舵机
+//	servos.SetAngle(servos_angle);//舵机
 	Get_Chassis_to_Gimbal_ore(&Send_Gimbal_to_Chassis_Huart);
 	if(Total_tasks_staticTime.ISOne(2))//控制地盘can发送频率
 	{
@@ -384,6 +384,8 @@ int16_t idx = 0;
 int16_t data_angle[400];
 int16_t data_T[400];
 int8_t data_star = 0;
+
+float cur,tar;
 void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim)//回调函数
 {
 	if(htim == &htim6)
@@ -415,10 +417,10 @@ void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim)//回调函数
 			}	
 			
 			//Pitch限幅
-			if(pitch_target_angle_Encoder < 80)
-				pitch_target_angle_Encoder = 80;
-			else if(pitch_target_angle_Encoder > 135)
-				pitch_target_angle_Encoder = 135;
+//			if(pitch_target_angle_Encoder < 80)
+//				pitch_target_angle_Encoder = 80;
+//			else if(pitch_target_angle_Encoder > 135)
+//				pitch_target_angle_Encoder = 135;
 			
 			//td期望值
 			tar_pitch.td_quadratic(pitch_target_angle_Encoder);
@@ -679,8 +681,21 @@ void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim)//回调函数
 		pid_yaw_gy.GetNoLinePid(kpid_yaw_gy,td_yaw_gy.x1 + xxsdff,td_yaw_target_angle_gy.x1,max_yaw_t);
 //		yaw_ff.UpData2(td_yaw_gy.x1 + xxsdff);		
 		
+		tar = fmod((tar_pitch.x1 * 22.75), 8191);
+		cur = Motor6020.GetMotorDataPos(PITCH_MOTOR_ID);
+
+		if(tar - cur > 4096)    //4096 ：半圈机械角度
+		{
+			cur += 8191;        //8191,8192无所谓了，四舍五入
+		}
+		else if(tar - cur < -4096)
+		{
+			cur -= 8191;
+		}
+
+		
 		td_pitch_Encoder_speed.td_quadratic(Motor6020.GetMotorDataSpeed(PITCH_MOTOR_ID));
-		pid_pitch_angle.GetPidPos(kpid_pitch_angle, tar_pitch.x1 * 22.75, Motor6020.GetMotorDataPos(PITCH_MOTOR_ID), 30000);
+		pid_pitch_angle.GetPidPos(kpid_pitch_angle, tar, cur, 30000);
 		pid_pitch_speed.GetPidPos(kpid_pitch_speed, pid_pitch_angle.pid.cout, td_pitch_Encoder_speed.x1, 30000);
 		ude_pitch.UpData(td_pitch_Encoder_speed.x1 / 30, pid_pitch_speed.pid.cout, pid_pitch_angle.pid.now_e);
 		FF_pitch.UpData(tar_pitch.x1 * 22.75, FF_pitch_k);
@@ -772,10 +787,9 @@ void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim)//回调函数
 		send_motor_ms++;
 		send_motor_ms %= 2;
 		
-	*((float*)&send_str2[0]) = tar_pitch.x1;
-	*((float*)&send_str2[4]) = Motor6020.GetMotorDataPos(PITCH_MOTOR_ID)/22.75;
-	*((float*)&send_str2[8]) = ude_pitch.ude.I_u;
-	*((float*)&send_str2[12]) = ude_pitch.ude.Xnt;
+	*((float*)&send_str2[0]) = tar;
+	*((float*)&send_str2[4]) = cur;
+
 
 		
 
